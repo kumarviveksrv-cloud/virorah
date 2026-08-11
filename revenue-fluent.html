@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Virorah Revenue Fluent — A new language for HR. The language of Revenue.</title>
+  <meta name="description" content="Five intelligence pillars that translate every people decision into financial language. Value Ledger, Talent Premium, Org Vitals, Human P&L, Balance Sheet." />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+    :root{--bg:#050410;--surface:#0d0b1e;--purple:#6366f1;--purple2:#7c3aed;--accent:#a5b4fc;--light:#f4f3ff;--muted:rgba(165,180,252,0.6);--dim:rgba(165,180,252,0.3);--border:rgba(99,102,241,0.2);--glow:rgba(99,102,241,0.25)}
+    body{background:var(--bg);color:rgba(244,243,255,0.9);font-family:'DM Sans',sans-serif;line-height:1.6;overflow-x:hidden}
+    ::selection{background:rgba(99,102,241,0.35)}::-webkit-scrollbar{width:5px}::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--purple),var(--purple2));border-radius:3px}
+    #vr-canvas{position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:0;opacity:0;transition:opacity 1.5s ease}#vr-canvas.ready{opacity:1}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 60px;height:68px;display:flex;align-items:center;justify-content:space-between;background:rgba(8,6,18,0.88);backdrop-filter:blur(20px);border-bottom:1px solid rgba(99,102,241,0.12)}
+    .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}.logo-wordmark{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;color:#fff;letter-spacing:-.02em}
+    .nav-links{display:flex;align-items:center;gap:32px}.nav-link{font-size:13px;color:var(--muted);text-decoration:none;transition:color .2s}.nav-link:hover{color:var(--light)}
+    .nav-cta{padding:9px 22px;background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:13px;border-radius:8px;text-decoration:none;transition:all .2s}
+    section{padding:100px 60px;position:relative;z-index:1}.section-inner{max-width:1100px;margin:0 auto}
+    .eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--purple);margin-bottom:16px;opacity:.8}
+    h1{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(36px,5vw,64px);font-weight:700;line-height:1.1;color:rgba(244,243,255,0.85);margin-bottom:8px}
+    .hero-punchline{font-family:'Space Grotesk',sans-serif;font-size:clamp(36px,5vw,64px);font-weight:700;background:linear-gradient(135deg,var(--purple),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:28px}
+    h2{font-family:'Space Grotesk',sans-serif;font-size:clamp(24px,2.5vw,36px);font-weight:700;line-height:1.15;letter-spacing:-.02em;margin-bottom:16px;color:var(--light)}
+    .hero-body{font-size:17px;color:var(--muted);line-height:1.8;max-width:580px;margin-bottom:40px}
+    .pillars-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:48px}
+    .pillar-card{background:var(--surface);border:1px solid rgba(99,102,241,0.12);border-radius:14px;padding:24px;text-align:center;transition:border-color .25s}
+    .pillar-card:hover{border-color:rgba(99,102,241,0.3)}
+    .pillar-num{font-family:'DM Mono',monospace;font-size:11px;color:rgba(99,102,241,0.4);margin-bottom:14px;letter-spacing:.06em}
+    .pillar-name{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:var(--light);margin-bottom:8px}
+    .pillar-desc{font-size:12px;color:var(--muted);line-height:1.65}
+    .shift-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px}
+    .shift-col{display:flex;flex-direction:column;gap:10px}
+    .shift-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:6px 14px;border-radius:5px;display:inline-block;margin-bottom:6px;width:fit-content}
+    .shift-label.before{color:var(--dim);background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07)}
+    .shift-label.after{color:var(--purple);background:rgba(99,102,241,0.07);border:1px solid rgba(99,102,241,0.2)}
+    .shift-card{border-radius:12px;padding:18px 20px;font-size:13px;line-height:1.7}
+    .shift-card.before{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);color:var(--muted);font-style:italic}
+    .shift-card.after{background:var(--surface);border:1px solid rgba(99,102,241,0.18);color:rgba(244,243,255,0.72)}
+    .shift-card.after strong{color:#a5b4fc}
+    .cta-block{text-align:center;padding:60px;background:linear-gradient(135deg,rgba(99,102,241,0.08),rgba(118,75,162,0.04));border:1px solid rgba(99,102,241,0.15);border-radius:20px;margin-top:20px}
+    .cta-headline{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(24px,3vw,38px);font-weight:700;color:rgba(244,243,255,0.85);margin-bottom:12px;line-height:1.2}
+    .cta-sub{font-size:15px;color:var(--muted);margin-bottom:32px}
+    .btn-primary{padding:15px 40px;background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;border-radius:10px;text-decoration:none;display:inline-block;transition:all .2s;box-shadow:0 4px 20px var(--glow)}
+    .btn-primary:hover{opacity:.88;transform:translateY(-1px)}
+    .btn-ghost{padding:14px 28px;background:transparent;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:14px;border:1px solid var(--border);border-radius:10px;text-decoration:none;display:inline-block;transition:all .2s;margin-left:12px}
+    .btn-ghost:hover{border-color:rgba(99,102,241,0.4);color:var(--light)}
+    footer{padding:32px 60px;border-top:1px solid rgba(99,102,241,0.1);display:flex;align-items:center;justify-content:space-between;position:relative;z-index:1}
+    .footer-wordmark{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:rgba(244,243,255,0.3)}
+    .footer-copy{font-family:'DM Mono',monospace;font-size:10px;color:rgba(165,180,252,0.2)}
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}.reveal.visible{opacity:1;transform:translateY(0)}
+    @media(max-width:960px){nav{padding:0 24px}.nav-links{display:none}section{padding:72px 24px}.pillars-grid{grid-template-columns:1fr 1fr}.shift-grid{grid-template-columns:1fr}footer{flex-direction:column;gap:12px;text-align:center;padding:28px 24px}}
+    @media(max-width:600px){.pillars-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<canvas id="vr-canvas"></canvas>
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg width="34" height="34" viewBox="0 0 34 34" fill="none"><rect width="34" height="34" rx="8" fill="url(#lgrf)"/><path d="M8 9L17 25L26 9H21L17 17L13 9H8Z" fill="white" opacity="0.95"/><defs><linearGradient id="lgrf" x1="0" y1="0" x2="34" y2="34" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#6366f1"/><stop offset="100%" stop-color="#7c3aed"/></linearGradient></defs></svg>
+    <div class="logo-wordmark">Virorah</div>
+  </a>
+  <div class="nav-links">
+    <a href="index.html#products" class="nav-link">Products</a>
+    <a href="humacity.html" class="nav-link">Philosophy</a>
+    <a href="index.html#about" class="nav-link">About</a>
+    <a href="index.html#contact" class="nav-link">Contact</a>
+  </div>
+  <a href="https://humacity.com" target="_blank" class="nav-cta">Enter Platform →</a>
+</nav>
+
+<section style="padding-top:140px;padding-bottom:60px">
+  <div class="section-inner">
+    <div class="eyebrow">Virorah &middot; Product 03</div>
+    <h1>A new language for HR.</h1>
+    <div class="hero-punchline">The language of Revenue.</div>
+    <p class="hero-body">Revenue Fluent is the financial fluency platform for HR professionals. Five intelligence pillars that translate every people decision into the language your CEO and CFO already speak — in real numbers, not percentages.</p>
+    <a href="https://humacity.com" target="_blank" class="btn-primary">Enter Revenue Fluent →</a>
+    <a href="index.html" class="btn-ghost">← Back to Virorah</a>
+  </div>
+</section>
+
+<section style="background:rgba(13,11,30,0.7);border-top:1px solid rgba(99,102,241,0.1);border-bottom:1px solid rgba(99,102,241,0.1)">
+  <div class="section-inner reveal">
+    <div class="eyebrow">The five pillars</div>
+    <h2>Five pillars. One fluency.<br>HR's complete financial statement.</h2>
+    <p style="font-size:15px;color:var(--muted);line-height:1.75;max-width:560px">Each pillar is a live intelligence tool that builds on the last. Together they form HR's complete financial statement suite.</p>
+    <div class="pillars-grid">
+      <div class="pillar-card"><div class="pillar-num">L1</div><div class="pillar-name">Value Ledger</div><div class="pillar-desc">Every HR decision has a financial entry. Most orgs just never wrote it down.</div></div>
+      <div class="pillar-card"><div class="pillar-num">L2</div><div class="pillar-name">Talent Premium</div><div class="pillar-desc">What is the financial value of having better-than-average people? L2 names it.</div></div>
+      <div class="pillar-card"><div class="pillar-num">L3</div><div class="pillar-name">Org Vitals</div><div class="pillar-desc">You've been calling it culture. It's your organisation's DNA, named and measured.</div></div>
+      <div class="pillar-card"><div class="pillar-num">L4</div><div class="pillar-name">Human P&L</div><div class="pillar-desc">HR has always had a P&L. Nobody taught them to read it. Now you can.</div></div>
+      <div class="pillar-card"><div class="pillar-num">L5</div><div class="pillar-name">Balance Sheet</div><div class="pillar-desc">Your organisation's human capital balance sheet. It's always existed. Here it is.</div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-inner reveal">
+    <div class="eyebrow">The shift</div>
+    <h2>How HR speaks today.<br>How Revenue Fluent speaks.</h2>
+    <div class="shift-grid">
+      <div class="shift-col">
+        <div class="shift-label before">Before Revenue Fluent</div>
+        <div class="shift-card before">"Our attrition rate is 14%."</div>
+        <div class="shift-card before">"Engagement scores are up 6 points."</div>
+        <div class="shift-card before">"We filled 23 roles this quarter."</div>
+      </div>
+      <div class="shift-col">
+        <div class="shift-label after">With Revenue Fluent</div>
+        <div class="shift-card after">"That attrition cost us <strong>₹1.1M in revenue.</strong>"</div>
+        <div class="shift-card after">"Our hiring generated <strong>+14% Talent Premium.</strong>"</div>
+        <div class="shift-card after">"Net HR investment return this year: <strong>2.3x.</strong>"</div>
+      </div>
+    </div>
+    <div class="cta-block" style="margin-top:40px">
+      <div class="cta-headline">Become Revenue Fluent.</div>
+      <p class="cta-sub">Five pillars. Free to start. One language. The language of revenue.</p>
+      <a href="https://humacity.com" target="_blank" class="btn-primary">Enter Revenue Fluent →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div style="display:flex;align-items:center;gap:10px">
+    <svg width="24" height="24" viewBox="0 0 34 34" fill="none"><rect width="34" height="34" rx="8" fill="url(#lgfrf)"/><path d="M8 9L17 25L26 9H21L17 17L13 9H8Z" fill="white" opacity="0.8"/><defs><linearGradient id="lgfrf" x1="0" y1="0" x2="34" y2="34" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#6366f1"/><stop offset="100%" stop-color="#7c3aed"/></linearGradient></defs></svg>
+    <div class="footer-wordmark">Virorah</div>
+    <span style="font-size:12px;color:rgba(165,180,252,0.25)">— Revenue Fluent is a Virorah product</span>
+  </div>
+  <div class="footer-copy">&copy; 2026 Virorah &nbsp;&middot;&nbsp; Gurugram, India</div>
+</footer>
+<script>
+(function(){var canvas=document.getElementById('vr-canvas');if(!canvas)return;var ctx=canvas.getContext('2d');var W,H;var p=[];var cfg={count:40,connDist:100,dc:'165,180,252',lc:'99,102,241',do:.25,lo:.08,sp:.12,ds:1.2};function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}function init(){resize();p=[];for(var i=0;i<cfg.count;i++)p.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*cfg.sp,vy:(Math.random()-.5)*cfg.sp,r:Math.random()*cfg.ds+.5,o:Math.random()*cfg.do+.1});}function draw(){ctx.clearRect(0,0,W,H);for(var i=0;i<p.length;i++){for(var j=i+1;j<p.length;j++){var dx=p[i].x-p[j].x,dy=p[i].y-p[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<cfg.connDist){ctx.beginPath();ctx.strokeStyle='rgba('+cfg.lc+','+(1-d/cfg.connDist)*cfg.lo+')';ctx.lineWidth=.6;ctx.moveTo(p[i].x,p[i].y);ctx.lineTo(p[j].x,p[j].y);ctx.stroke();}}}for(var k=0;k<p.length;k++){var q=p[k];ctx.beginPath();ctx.arc(q.x,q.y,q.r,0,Math.PI*2);ctx.fillStyle='rgba('+cfg.dc+','+q.o+')';ctx.fill();q.x+=q.vx;q.y+=q.vy;if(q.x<0||q.x>W)q.vx*=-1;if(q.y<0||q.y>H)q.vy*=-1;}requestAnimationFrame(draw);}window.addEventListener('resize',resize);init();draw();setTimeout(function(){canvas.classList.add('ready');},400);})();
+var reveals=document.querySelectorAll('.reveal');var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.08});reveals.forEach(function(r){obs.observe(r);});
+</script>
+</body>
+</html>
