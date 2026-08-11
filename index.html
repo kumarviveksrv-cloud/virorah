@@ -139,7 +139,7 @@
 <!-- NAV -->
 <nav id="main-nav">
   <a href="index.html" class="nav-logo">
-    <img src="https://raw.githubusercontent.com/kumarviveksrv-cloud/pms-toolkit-data/main/virorah_logo_navmatch.png"
+    <img src="Virorah_Logo.png"
          alt="Virorah" style="height:40px;width:auto;display:block;object-fit:contain;mix-blend-mode:screen;filter:brightness(1.1);"
          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
     <div class="nav-brand" style="display:none">
@@ -339,29 +339,39 @@
 
   // ── UNIVERSE WORDS (scattered in 3D space beyond sphere) ────────────
   var UNIVERSE = [
-    // Products
-    {t:'Virorah PMS', s:14}, {t:'Situation Room', s:13}, {t:'Revenue Fluent', s:13}, {t:'Humacity', s:16},
-    // Frameworks
-    {t:'PACT', s:20}, {t:'SIGNAL', s:18}, {t:'INFLUENCE', s:16}, {t:'MERIDIAN', s:18}, {t:'ARIA', s:22},
-    // Pillar labels — like humacity uses L3 · Org Vitals
+    // The three products — core identity
+    {t:'Virorah PMS', s:16}, {t:'Situation Room', s:15}, {t:'Revenue Fluent', s:15},
+    // Product full names — appear large when close
+    {t:'Performance Management', s:13}, {t:'HR Intelligence', s:14}, {t:'Financial Fluency', s:13},
+    // Humacity — the philosophy
+    {t:'HUMACITY', s:22}, {t:'Humacity', s:14},
+    // Frameworks — short codes appear very large
+    {t:'PACT', s:26}, {t:'SIGNAL', s:24}, {t:'INFLUENCE', s:22},
+    {t:'MERIDIAN', s:22}, {t:'ARIA', s:28},
+    // Five pillars — as labeled in Revenue Fluent
     {t:'L1 · Value Ledger', s:12}, {t:'L2 · Talent Premium', s:12},
     {t:'L3 · Org Vitals', s:12}, {t:'L4 · Human P&L', s:12}, {t:'L5 · Balance Sheet', s:12},
-    // Short codes — appear large when close, tiny when far
-    {t:'L1', s:28}, {t:'L2', s:26}, {t:'L3', s:26}, {t:'L4', s:24}, {t:'L5', s:24},
-    {t:'HCI', s:30}, {t:'ROI', s:28}, {t:'HUMACITY', s:20},
-    // Metrics
-    {t:'4.1x', s:24}, {t:'2.4x', s:22}, {t:'+18%', s:20}, {t:'+12%', s:18},
-    {t:'2.3x', s:22}, {t:'3.8x', s:20}, {t:'₹35L', s:22}, {t:'₹12L', s:18},
-    // Concepts
-    {t:'Trust Capital', s:13}, {t:'Culture Yield', s:12}, {t:'Signal Intelligence', s:11},
-    {t:'Belonging Premium', s:11}, {t:'Human P&L', s:14}, {t:'Net Human Worth', s:12},
-    // Like humacity uses philosophical suffix words
-    {t:'veracity', s:14}, {t:'tenacity', s:15}, {t:'vivacity', s:14}, {t:'audacity', s:14},
-    {t:'capacity', s:13}, {t:'humacity', s:16},
-    // Tools
-    {t:'ER Navigator', s:11}, {t:'Policy Compass', s:11}, {t:'Case Library', s:11}, {t:'The Debrief', s:11},
-    // Extra
-    {t:'Value', s:18}, {t:'Talent', s:17}, {t:'Performance', s:12},
+    // Short pillar codes — very large when close
+    {t:'L1', s:32}, {t:'L2', s:30}, {t:'L3', s:30}, {t:'L4', s:28}, {t:'L5', s:28},
+    // Financial metrics from the Virorah universe
+    {t:'4.1x', s:26}, {t:'2.4x', s:24}, {t:'3.8x', s:22}, {t:'2.3x', s:20},
+    {t:'+18%', s:22}, {t:'+12%', s:20}, {t:'+24%', s:18},
+    // Currency amounts — INR focused
+    {t:'&#8377;35L', s:24}, {t:'&#8377;12L', s:20}, {t:'&#8377;48L', s:18}, {t:'&#8377;1.1M', s:18},
+    // Humacity asset classes
+    {t:'Trust Capital', s:13}, {t:'Culture Yield', s:12},
+    {t:'Signal Intelligence', s:11}, {t:'Belonging Premium', s:11},
+    // Key financial concepts
+    {t:'Human P&L', s:16}, {t:'Net Human Worth', s:13},
+    {t:'Human Gross Margin', s:11}, {t:'Talent Premium', s:12},
+    // Virorah tools
+    {t:'ER Navigator', s:12}, {t:'Policy Compass', s:11},
+    {t:'Case Library', s:11}, {t:'The Debrief', s:11},
+    // Short identifiers — float like stars
+    {t:'HCI', s:32}, {t:'ROI', s:28}, {t:'TQP', s:24}, {t:'HCI', s:26},
+    // Key phrases from the universe
+    {t:'People decisions', s:12}, {t:'Business language', s:11},
+    {t:'Financial dimension', s:11}, {t:'Act like it.', s:13},
   ];
 
   var universeWords = UNIVERSE.map(function(u){
