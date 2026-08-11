@@ -1,163 +1,207 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Virorah Situation Room &mdash; HR intelligence. Every hard moment covered.</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Virorah Situation Room — HR intelligence. Every hard moment covered.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet"/>
   <style>
-    
     *{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
-    :root{--void:#050410;--ink:#0d0b1e;--purple:#6366f1;--violet:#7c3aed;--rose:#e879f9;--text:#f4f3ff;--muted:rgba(165,180,252,.62);--dim:rgba(165,180,252,.28);--rule:rgba(255,255,255,.07)}
-    body{background:var(--void);color:var(--text);font-family:'DM Sans',sans-serif;overflow-x:hidden;cursor:none}
-    ::selection{background:rgba(99,102,241,.3)}::-webkit-scrollbar{width:0}
-    body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px 200px}
-    #vr-cursor{position:fixed;width:10px;height:10px;border-radius:50%;background:#a5b4fc;box-shadow:0 0 18px 5px rgba(99,102,241,.55);pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width .3s,height .3s,opacity .3s,background .3s}
-    #vr-cursor.expand{width:32px;height:32px;background:transparent;border:1px solid rgba(165,180,252,.4);box-shadow:none}
-    #vr-cursor.hidden{opacity:0}
-    #vr-canvas{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:0;transition:opacity 2s ease}
-    #vr-canvas.ready{opacity:1}
-    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:24px 60px;display:flex;align-items:center;justify-content:space-between;transition:background .4s,backdrop-filter .4s,border-bottom .4s}
-    nav::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(5,4,16,.55),transparent);pointer-events:none}
-    .nav-logo{display:flex;align-items:center;text-decoration:none;position:relative;z-index:1}
-    .nav-links{display:flex;align-items:center;gap:36px;position:relative;z-index:1}
-    .nav-link{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);text-decoration:none;transition:color .2s}
-    .nav-link:hover{color:var(--text)}
-    .nav-cta{padding:10px 22px;border:1px solid rgba(165,180,252,.18);border-radius:100px;font-size:13px;color:var(--muted);text-decoration:none;transition:all .25s;position:relative;z-index:1}
-    .nav-cta:hover{border-color:rgba(99,102,241,.5);color:var(--text);background:rgba(99,102,241,.08)}
-    .eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
-    .btn-primary{padding:14px 32px;background:linear-gradient(135deg,var(--purple),var(--violet));color:#fff;font-size:14px;font-weight:500;border-radius:100px;text-decoration:none;transition:all .25s;box-shadow:0 4px 24px rgba(99,102,241,.35);display:inline-block}
-    .btn-primary:hover{box-shadow:0 6px 36px rgba(99,102,241,.55);transform:translateY(-1px)}
-    .btn-ghost{font-size:14px;color:var(--muted);text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:color .2s}
-    .btn-ghost:hover{color:var(--text)}
-    .row-section{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
-    .arch-row{display:grid;grid-template-columns:280px 1fr 32px;gap:48px;align-items:center;padding:40px 0;border-top:1px solid var(--rule);text-decoration:none;transition:all .3s;position:relative;overflow:hidden}
-    .arch-row:first-child{border-top:none}
-    .arch-row::before{content:'';position:absolute;left:-60px;right:-60px;top:0;bottom:0;background:rgba(99,102,241,.03);opacity:0;transition:opacity .3s}
-    .arch-row:hover::before{opacity:1}
-    .arch-row:hover .row-arrow{transform:translateX(6px);opacity:1;color:var(--purple)}
-    .arch-row:hover .row-name{color:var(--text)}
-    .row-tag{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:10px}
-    .row-name{font-family:'Cormorant Garamond',serif;font-size:clamp(24px,3vw,44px);font-weight:700;color:rgba(244,243,255,.7);line-height:1;letter-spacing:-.02em;transition:color .3s}
-    .row-desc{font-size:14px;color:var(--muted);line-height:1.78}
-    .row-arrow{font-size:20px;color:var(--dim);transform:translateX(0);opacity:.35;transition:all .35s}
-    .marquee{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:13px 0;overflow:hidden;position:relative;z-index:1}
-    .marquee-track{display:flex;animation:marqueeRun 32s linear infinite;width:max-content}
-    .m-item{display:flex;align-items:center;gap:18px;padding:0 44px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);white-space:nowrap}
-    .m-dot{width:3px;height:3px;border-radius:50%;background:var(--purple);opacity:.55}
-    @keyframes marqueeRun{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-    footer{border-top:1px solid var(--rule);padding:28px 60px;display:flex;align-items:center;justify-content:space-between;position:relative;z-index:1}
-    .f-brand{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;color:rgba(244,243,255,.22)}
-    .f-tag{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:rgba(165,180,252,.15);margin-left:12px}
-    .f-copy{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:rgba(165,180,252,.14)}
-    .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+    :root{--bg:#050410;--surface:#0d0b1e;--card:#11102a;--purple:#6366f1;--violet:#7c3aed;--rose:#e879f9;--text:#f4f3ff;--muted:#a5b4fc;--border:rgba(99,102,241,.18);--glow:rgba(99,102,241,.35);--dim:rgba(165,180,252,.28);--rule:rgba(255,255,255,.07)}
+    body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;line-height:1.6;overflow-x:hidden}
+    ::selection{background:rgba(99,102,241,.3)}
+    ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--purple),var(--violet));border-radius:2px}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 52px;display:flex;align-items:center;justify-content:space-between;transition:background .4s,backdrop-filter .4s,border-bottom .4s}
+    nav.scrolled{background:rgba(5,4,16,.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(99,102,241,.1)}
+    .nav-logo{display:flex;align-items:center;text-decoration:none}
+    .nav-links{display:flex;gap:28px;list-style:none}
+    .nav-links a{font-size:13px;font-weight:500;color:rgba(244,243,255,.4);text-decoration:none;transition:color .2s}
+    .nav-links a:hover{color:var(--text)}
+    .nav-cta{padding:9px 22px;border-radius:8px;font-size:13px;font-weight:600;background:linear-gradient(135deg,var(--purple),var(--violet));color:#fff;text-decoration:none;box-shadow:0 2px 16px rgba(99,102,241,.4);transition:all .2s;white-space:nowrap}
+    .nav-cta:hover{box-shadow:0 4px 24px rgba(99,102,241,.6);transform:translateY(-1px)}
+    .hero{padding:140px 52px 80px;position:relative;z-index:1;overflow:hidden}
+    .hero-inner{max-width:1100px;margin:0 auto}
+    .hero-orb{position:absolute;top:-200px;right:-100px;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(99,102,241,.1) 0%,transparent 65%);pointer-events:none}
+    .badge{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border-radius:20px;background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.25);font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:24px;opacity:0;animation:fadeUp .7s .1s ease both}
+    .badge-dot{width:5px;height:5px;border-radius:50%;background:#22c55e;animation:livePulse 1.8s ease-in-out infinite}
+    @keyframes livePulse{0%,100%{opacity:1}50%{opacity:.3}}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+    .hero-title{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:clamp(36px,5vw,62px);line-height:1.1;letter-spacing:-.01em;color:rgba(244,243,255,.8);margin-bottom:10px;opacity:0;animation:fadeUp .8s .15s ease both}
+    .hero-punch{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(28px,3.8vw,52px);line-height:1.1;letter-spacing:-.02em;background:linear-gradient(120deg,#c4b5fd 0%,var(--purple) 45%,var(--rose) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:28px;opacity:0;animation:fadeUp .8s .25s ease both}
+    .hero-body{font-size:16px;color:rgba(244,243,255,.5);line-height:1.78;max-width:600px;margin-bottom:36px;opacity:0;animation:fadeUp .8s .35s ease both}
+    .hero-ctas{display:flex;gap:12px;flex-wrap:wrap;opacity:0;animation:fadeUp .8s .45s ease both}
+    .btn-p{display:inline-flex;align-items:center;gap:8px;padding:13px 30px;border-radius:9px;font-size:14px;font-weight:700;background:linear-gradient(135deg,var(--purple),var(--violet));color:#fff;text-decoration:none;box-shadow:0 4px 24px rgba(99,102,241,.45);transition:all .2s}
+    .btn-p:hover{transform:translateY(-2px);box-shadow:0 6px 32px rgba(99,102,241,.62)}
+    .btn-g{display:inline-flex;align-items:center;gap:8px;padding:13px 24px;border-radius:9px;font-size:14px;font-weight:500;background:transparent;border:1px solid rgba(255,255,255,.1);color:rgba(244,243,255,.55);text-decoration:none;transition:all .2s}
+    .btn-g:hover{border-color:var(--border);color:var(--muted);background:rgba(99,102,241,.07)}
+    .sec{padding:80px 52px;position:relative;z-index:1}
+    .sec-inner{max-width:1100px;margin:0 auto}
+    .eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--purple);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+    .eyebrow::before{content:'';width:20px;height:1.5px;background:var(--purple)}
+    .sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(26px,3vw,42px);font-weight:400;line-height:1.2;letter-spacing:-.01em;color:var(--text);margin-bottom:40px}
+    .sec-title em{font-style:italic;color:var(--muted)}
+    .stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:2px;overflow:hidden;margin-bottom:60px}
+    .stat-box{padding:36px 32px;background:var(--bg);transition:background .3s;position:relative;overflow:hidden}
+    .stat-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--purple),var(--rose));opacity:0;transition:opacity .3s}
+    .stat-box:hover::before{opacity:1}
+    .stat-box:hover{background:rgba(99,102,241,.03)}
+    .stat-n{font-family:'Space Grotesk',sans-serif;font-size:clamp(32px,4vw,52px);font-weight:700;line-height:1;background:linear-gradient(135deg,#c4b5fd,var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px}
+    .stat-l{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:.1em;text-transform:uppercase;line-height:1.6}
+    .feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .feature-card{background:var(--card);border:1px solid rgba(99,102,241,.1);border-radius:14px;padding:26px;transition:border-color .25s,transform .25s}
+    .feature-card:hover{border-color:rgba(99,102,241,.3);transform:translateY(-2px)}
+    .feat-icon{font-size:20px;margin-bottom:14px}
+    .feat-tag{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--purple);margin-bottom:8px;opacity:.75}
+    .feat-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--text);margin-bottom:8px;line-height:1.2}
+    .feat-desc{font-size:13px;color:rgba(244,243,255,.45);line-height:1.72}
+    .feat-card-wide{grid-column:span 2}
+    .divide{border-top:1px solid var(--rule);margin:0 52px}
+    .cta-sec{padding:100px 52px;text-align:center;position:relative;z-index:1;overflow:hidden}
+    .cta-orb{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:360px;background:radial-gradient(ellipse,rgba(99,102,241,.14) 0%,transparent 65%);pointer-events:none}
+    .cta-title{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:clamp(30px,4.5vw,58px);line-height:1.15;color:rgba(244,243,255,.82);margin-bottom:10px;position:relative;z-index:1}
+    .cta-title strong{font-style:normal;font-weight:700;display:block;background:linear-gradient(135deg,#c4b5fd,var(--purple),var(--rose));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .cta-sub{font-size:15px;color:rgba(244,243,255,.38);margin-bottom:32px;position:relative;z-index:1}
+    footer{border-top:1px solid var(--rule);padding:28px 52px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;position:relative;z-index:1}
+    .f-brand{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:700;color:rgba(244,243,255,.25)}
+    .f-links{display:flex;gap:20px;list-style:none}
+    .f-links a{font-size:12px;color:rgba(244,243,255,.2);text-decoration:none;transition:color .2s}
+    .f-links a:hover{color:var(--muted)}
+    .f-copy{font-family:'JetBrains Mono',monospace;font-size:9px;color:rgba(165,180,252,.15);letter-spacing:.04em}
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .75s ease,transform .75s ease}
     .reveal.visible{opacity:1;transform:translateY(0)}
-    @keyframes fadeUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
-    @media(max-width:1024px){nav{padding:20px 32px}}
-    @media(max-width:768px){nav{padding:18px 24px}.nav-links{display:none}.arch-row{grid-template-columns:1fr;gap:12px}.row-arrow{display:none}footer{padding:24px 24px;flex-direction:column;gap:10px;text-align:center}}
-    @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-    .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 60px 72px;position:relative;z-index:1;overflow:hidden}
-    .hero-orb{position:absolute;bottom:-20%;left:35%;width:900px;height:900px;border-radius:50%;background:radial-gradient(circle,rgba(0,229,195,.07) 0%,rgba(99,102,241,.06) 40%,transparent 68%);pointer-events:none;animation:orbDrift 13s ease-in-out infinite alternate}
-    @keyframes orbDrift{from{transform:translate(0,0) scale(1)}to{transform:translate(-70px,-45px) scale(1.1)}}
-    .content-section{padding:100px 60px;position:relative;z-index:1}
-    .shift-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px}
-    .shift-col{display:flex;flex-direction:column;gap:10px}
-    .shift-colhead{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;padding:5px 12px;border-radius:4px;display:inline-block;margin-bottom:6px;width:fit-content}
-    .shift-card{border-radius:10px;padding:18px 22px;font-size:14px;line-height:1.75}
-    .shift-card.before{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);color:var(--muted);font-style:italic}
-    .shift-card.after{background:var(--ink);border:1px solid rgba(99,102,241,.16);color:rgba(244,243,255,.72)}
-    .shift-card.after strong{color:#a5b4fc;font-family:'JetBrains Mono',monospace;font-style:normal}
-    @media(max-width:768px){.hero{padding:0 24px 56px}.content-section{padding:64px 24px}.shift-grid{grid-template-columns:1fr}}
+    .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+    @media(max-width:960px){nav{padding:16px 24px}.nav-links{display:none}.hero{padding:120px 24px 60px}.sec{padding:60px 24px}.stat-row{grid-template-columns:1fr 1fr}.feature-grid{grid-template-columns:1fr 1fr}.feat-card-wide{grid-column:span 1}.divide{margin:0 24px}.cta-sec{padding:72px 24px}footer{padding:24px;flex-direction:column;text-align:center}.f-links{justify-content:center}}
+    @media(max-width:600px){.feature-grid{grid-template-columns:1fr}.stat-row{grid-template-columns:1fr 1fr}}
+
+    .tools-list{display:flex;flex-direction:column;gap:0}
+    .tool-row{display:grid;grid-template-columns:220px 1fr auto;gap:40px;align-items:center;padding:32px 0;border-top:1px solid var(--rule);text-decoration:none;transition:background .25s;position:relative}
+    .tool-row:last-child{border-bottom:1px solid var(--rule)}
+    .tool-row::before{content:'';position:absolute;left:-52px;right:-52px;top:0;bottom:0;background:rgba(99,102,241,.025);opacity:0;transition:opacity .25s}
+    .tool-row:hover::before{opacity:1}
+    .tool-row:hover .tool-arrow{transform:translateX(5px);opacity:1;color:var(--purple)}
+    .tool-row:hover .tool-name{color:var(--text)}
+    .tool-tag{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-bottom:8px}
+    .tool-name{font-family:'Cormorant Garamond',serif;font-size:clamp(20px,2.5vw,30px);font-weight:700;color:rgba(244,243,255,.72);line-height:1;letter-spacing:-.01em;transition:color .25s}
+    .tool-desc{font-size:14px;color:rgba(244,243,255,.45);line-height:1.75}
+    .tool-arrow{font-size:18px;color:var(--dim);transform:translateX(0);opacity:.4;transition:all .3s;flex-shrink:0}
+    .meridian-params{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+    .param{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--purple);background:rgba(99,102,241,.09);border:1px solid rgba(99,102,241,.2);padding:6px 14px;border-radius:100px;letter-spacing:.04em}
   </style>
-</head>
-<body>
-<canvas id="vr-canvas"></canvas><div id="vr-cursor"></div>
+</head><body>
 <nav id="main-nav">
-  <a href="index.html" class="nav-logo"><img src="https://raw.githubusercontent.com/kumarviveksrv-cloud/pms-toolkit-data/main/virorah_logo_navmatch.png" alt="Virorah" style="height:44px;width:auto;display:block;object-fit:contain;mix-blend-mode:screen;filter:brightness(1.1);" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span style="display:none;align-items:center;gap:8px;font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;color:#f4f3ff">Virorah</span></a>
-  <div class="nav-links">
-    <a href="index.html#products" class="nav-link">Products</a>
-    <a href="humacity.html" class="nav-link" >Philosophy</a>
-    <a href="index.html#about" class="nav-link">About</a>
-    <a href="index.html#contact" class="nav-link">Contact</a>
-  </div>
-  <a href="https://kumarviveksrv-cloud.github.io/situation-room/" class="nav-cta" target="_blank">Enter Platform &rarr;</a>
+  <a href="index.html" class="nav-logo"><img src="https://raw.githubusercontent.com/kumarviveksrv-cloud/pms-toolkit-data/main/virorah_logo_navmatch.png" alt="Virorah" style="height:40px;width:auto;display:block;object-fit:contain;mix-blend-mode:screen;filter:brightness(1.1);" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span style="display:none;font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:700;color:#f4f3ff">Virorah</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html#products">Products</a></li>
+    <li><a href="humacity.html">Philosophy</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <a href="https://kumarviveksrv-cloud.github.io/situation-room/" class="nav-cta" target="_blank">Enter Situation Room &rarr;</a>
 </nav>
 
-<section class="hero">
+<div class="hero">
   <div class="hero-orb"></div>
-  <div class="eyebrow" style="margin-bottom:36px;opacity:0;animation:fadeUp .8s .1s ease both">Virorah &middot; Product 02</div>
-  <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:clamp(58px,9.5vw,140px);line-height:.9;letter-spacing:-.02em;color:rgba(244,243,255,.78);margin-bottom:6px;opacity:0;animation:fadeUp .9s .2s ease both">People decisions</div>
-  <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(58px,9.5vw,140px);line-height:.9;letter-spacing:-.03em;background:linear-gradient(120deg,#6366f1 0%,#a5b4fc 45%,#e879f9 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:20px;opacity:0;animation:fadeUp .9s .35s ease both">are financial decisions.</div>
-  <div style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:rgba(165,180,252,.45);margin-bottom:40px;opacity:0;animation:fadeUp .8s .48s ease both">Act like it.</div>
-  <div style="display:flex;gap:16px;align-items:center;opacity:0;animation:fadeUp .8s .55s ease both">
-    <a href="https://kumarviveksrv-cloud.github.io/situation-room/" target="_blank" class="btn-primary">Enter Situation Room &rarr;</a>
-    <a href="index.html" class="btn-ghost">Back to Virorah</a>
+  <div class="hero-inner">
+    <div class="badge"><div class="badge-dot"></div>Virorah &middot; Product 02 &middot; HR Intelligence</div>
+    <h1 class="hero-title">People decisions are financial decisions.</h1>
+    <div class="hero-punch">Act like it.</div>
+    <p class="hero-body">Virorah Situation Room is the intelligence platform for Indian HR professionals who want to navigate every hard moment with financial precision. Five tools. Every output returns a rupee figure calibrated to your exact context via MERIDIAN.</p>
+    <div class="hero-ctas">
+      <a href="https://kumarviveksrv-cloud.github.io/situation-room/" target="_blank" class="btn-p">Enter Situation Room &rarr;</a>
+      <a href="index.html" class="btn-g">&larr; Back to Virorah</a>
+    </div>
+  </div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div class="sec-inner">
+    <div class="stat-row reveal">
+      <div class="stat-box"><div class="stat-n">5</div><div class="stat-l">Intelligence tools<br>India-calibrated</div></div>
+      <div class="stat-box"><div class="stat-n">7</div><div class="stat-l">MERIDIAN context<br>parameters</div></div>
+      <div class="stat-box"><div class="stat-n">&#8377;35L</div><div class="stat-l">Avg ER case<br>exposure mapped</div></div>
+      <div class="stat-box"><div class="stat-n">4</div><div class="stat-l">Humacity asset<br>classes tracked</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="divide"></div>
+
+<section class="sec">
+  <div class="sec-inner">
+    <div class="eyebrow reveal">Five intelligence tools</div>
+    <div class="sec-title reveal">Every hard HR moment.<br><em>Covered. In rupees.</em></div>
+    <div class="tools-list">
+      <a href="https://kumarviveksrv-cloud.github.io/situation-room/er-case-navigator.html" target="_blank" class="tool-row reveal">
+        <div><div class="tool-tag">PACT Framework</div><div class="tool-name">ER Case Navigator</div></div>
+        <div class="tool-desc">Describe any ER situation. PACT assesses Process Integrity, Accountability Clarity, Consequence Mapping, and Trust Preservation — calibrated to BNS, BNSS, and your exact MERIDIAN context. Returns full Humacity financial exposure in INR.</div>
+        <div class="tool-arrow">&rarr;</div>
+      </a>
+      <a href="https://kumarviveksrv-cloud.github.io/situation-room/stakeholder-influence.html" target="_blank" class="tool-row reveal">
+        <div><div class="tool-tag">INFLUENCE Stack</div><div class="tool-name">Stakeholder Influence Builder</div></div>
+        <div class="tool-desc">Walk into any leadership conversation with a five-layer strategy and a single irrefutable rupee figure. Credibility Foundation, Data Anchor, Narrative Bridge, Risk Mirror, Decision Runway.</div>
+        <div class="tool-arrow">&rarr;</div>
+      </a>
+      <a href="https://kumarviveksrv-cloud.github.io/situation-room/hr-data-storyteller.html" target="_blank" class="tool-row reveal">
+        <div><div class="tool-tag">SIGNAL Framework</div><div class="tool-name">HR Data Storyteller</div></div>
+        <div class="tool-desc">Turn raw HR metrics into a CFO-ready narrative. Situation, Impact, Gap, Narrative, Action, Linkage. Your data already tells a financial story. This tool translates it.</div>
+        <div class="tool-arrow">&rarr;</div>
+      </a>
+      <a href="https://kumarviveksrv-cloud.github.io/situation-room/conversation-simulator.html" target="_blank" class="tool-row reveal">
+        <div><div class="tool-tag">Voice Simulation &middot; ARIA</div><div class="tool-name">Conversation Simulator</div></div>
+        <div class="tool-desc">ARIA voices the stakeholder. You play the HR professional. Practice the hard conversation before you're in it — and get a coaching debrief on what to sharpen before the real meeting.</div>
+        <div class="tool-arrow">&rarr;</div>
+      </a>
+      <a href="https://kumarviveksrv-cloud.github.io/situation-room/policy-compass.html" target="_blank" class="tool-row reveal">
+        <div><div class="tool-tag">Compliance Intelligence</div><div class="tool-name">Policy Compass</div></div>
+        <div class="tool-desc">India-specific policy guidance in 30 seconds. Always references BNS, BNSS, BSA — the laws that replaced IPC, CrPC, and Indian Evidence Act in July 2024. Never outdated advice.</div>
+        <div class="tool-arrow">&rarr;</div>
+      </a>
+    </div>
   </div>
 </section>
 
-<div class="marquee"><div class="marquee-track">
-  <div class="m-item">ER Case Navigator<div class="m-dot"></div></div><div class="m-item">Stakeholder Influence Builder<div class="m-dot"></div></div><div class="m-item">HR Data Storyteller<div class="m-dot"></div></div><div class="m-item">Conversation Simulator<div class="m-dot"></div></div><div class="m-item">Policy Compass<div class="m-dot"></div></div><div class="m-item">MERIDIAN Context Engine<div class="m-dot"></div></div><div class="m-item">Humacity Financial Intelligence<div class="m-dot"></div></div>
-  <div class="m-item">ER Case Navigator<div class="m-dot"></div></div><div class="m-item">Stakeholder Influence Builder<div class="m-dot"></div></div><div class="m-item">HR Data Storyteller<div class="m-dot"></div></div><div class="m-item">Conversation Simulator<div class="m-dot"></div></div><div class="m-item">Policy Compass<div class="m-dot"></div></div><div class="m-item">MERIDIAN Context Engine<div class="m-dot"></div></div><div class="m-item">Humacity Financial Intelligence<div class="m-dot"></div></div>
-</div></div>
+<div class="divide"></div>
 
-<section class="content-section">
-  <div class="eyebrow reveal" style="margin-bottom:40px">Five intelligence tools</div>
-  <a href="https://kumarviveksrv-cloud.github.io/situation-room/er-case-navigator.html" target="_blank" class="arch-row reveal"><div><div class="row-tag">PACT Framework</div><div class="row-name">ER Case Navigator</div></div><div class="row-desc">Describe any ER situation. PACT assesses Process Integrity, Accountability Clarity, Consequence Mapping, and Trust Preservation &mdash; calibrated to BNS, BNSS, and your exact MERIDIAN context. Returns full Humacity financial exposure in INR.</div><div class="row-arrow">&rarr;</div></a>
-  <a href="https://kumarviveksrv-cloud.github.io/situation-room/stakeholder-influence.html" target="_blank" class="arch-row reveal"><div><div class="row-tag">INFLUENCE Stack</div><div class="row-name">Stakeholder Influence Builder</div></div><div class="row-desc">Walk into any leadership conversation with a five-layer strategy and a single irrefutable rupee figure. Credibility Foundation, Data Anchor, Narrative Bridge, Risk Mirror, Decision Runway &mdash; for the specific stakeholder in front of you.</div><div class="row-arrow">&rarr;</div></a>
-  <a href="https://kumarviveksrv-cloud.github.io/situation-room/hr-data-storyteller.html" target="_blank" class="arch-row reveal"><div><div class="row-tag">SIGNAL Framework</div><div class="row-name">HR Data Storyteller</div></div><div class="row-desc">Turn raw HR metrics into a CFO-ready narrative. Situation, Impact, Gap, Narrative, Action, Linkage. Your data already tells a financial story. This tool translates it.</div><div class="row-arrow">&rarr;</div></a>
-  <a href="https://kumarviveksrv-cloud.github.io/situation-room/conversation-simulator.html" target="_blank" class="arch-row reveal"><div><div class="row-tag">Voice Simulation &mdash; ARIA</div><div class="row-name">Conversation Simulator</div></div><div class="row-desc">ARIA voices the stakeholder. You play the HR professional. Practice the hard conversation before you&rsquo;re in it &mdash; and get a full coaching debrief on what to sharpen for the real meeting.</div><div class="row-arrow">&rarr;</div></a>
-  <a href="https://kumarviveksrv-cloud.github.io/situation-room/policy-compass.html" target="_blank" class="arch-row reveal"><div><div class="row-tag">Compliance Intelligence</div><div class="row-name">Policy Compass</div></div><div class="row-desc">India-specific policy guidance in 30 seconds. Always references BNS, BNSS, BSA &mdash; the laws that replaced IPC, CrPC, and Indian Evidence Act in July 2024. Never outdated advice, never generic counsel.</div><div class="row-arrow">&rarr;</div></a>
-</section>
-
-<section style="padding:100px 60px;border-top:1px solid var(--rule);position:relative;z-index:1">
-  <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start">
-    <div>
-      <div class="eyebrow" style="margin-bottom:24px">MERIDIAN Context Engine</div>
-      <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(26px,3.5vw,44px);font-weight:700;line-height:1.15;letter-spacing:-.02em;color:rgba(244,243,255,.8);margin-bottom:20px">Not generic advice.<br>Your advice.</div>
-      <div style="font-size:15px;color:var(--muted);line-height:1.78;margin-bottom:28px">Every response in Virorah Situation Room is calibrated to seven parameters that define your exact professional reality. No two HR professionals get the same output.</div>
-    </div>
-    <div style="padding-top:56px;display:flex;flex-wrap:wrap;gap:8px;align-content:start">
-      <div style="font-family:JetBrains Mono,monospace;font-size:10px;color:rgba(99,102,241,.7);background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.18);padding:7px 14px;border-radius:100px;letter-spacing:.04em">State / Region</div><div style="font-family:JetBrains Mono,monospace;font-size:10px;color:rgba(99,102,241,.7);background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.18);padding:7px 14px;border-radius:100px;letter-spacing:.04em">Industry</div><div style="font-family:JetBrains Mono,monospace;font-size:10px;color:rgba(99,102,241,.7);background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.18);padding:7px 14px;border-radius:100px;letter-spacing:.04em">Organisation Type</div><div style="font-family:JetBrains Mono,monospace;font-size:10px;color:rgba(99,102,241,.7);background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.18);padding:7px 14px;border-radius:100px;letter-spacing:.04em">Organisation Size</div><div style="font-family:JetBrains Mono,monospace;font-size:10px;color:rgba(99,102,241,.7);background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.18);padding:7px 14px;border-radius:100px;letter-spacing:.04em">HR Seniority Level</div><div style="font-family:JetBrains Mono,monospace;font-size:10px;color:rgba(99,102,241,.7);background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.18);padding:7px 14px;border-radius:100px;letter-spacing:.04em">Union Status</div><div style="font-family:JetBrains Mono,monospace;font-size:10px;color:rgba(99,102,241,.7);background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.18);padding:7px 14px;border-radius:100px;letter-spacing:.04em">HR Function</div>
+<section class="sec">
+  <div class="sec-inner reveal">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center">
+      <div>
+        <div class="eyebrow">MERIDIAN Context Engine</div>
+        <div class="sec-title" style="margin-bottom:16px">Not generic advice.<br><em>Your advice.</em></div>
+        <p style="font-size:15px;color:rgba(244,243,255,.45);line-height:1.78;margin-bottom:24px">Every response is calibrated to seven parameters defining your exact professional reality. No two HR professionals get the same output.</p>
+        <div class="meridian-params">
+          <div class="param">State / Region</div><div class="param">Industry</div><div class="param">Organisation Type</div><div class="param">Organisation Size</div><div class="param">HR Seniority Level</div><div class="param">Union Status</div><div class="param">HR Function</div>
+        </div>
+      </div>
+      <div style="background:var(--card);border:1px solid rgba(99,102,241,.12);border-radius:16px;padding:32px">
+        <div class="eyebrow" style="margin-bottom:20px">Humacity Financial Intelligence</div>
+        <p style="font-size:14px;color:rgba(244,243,255,.45);line-height:1.78;margin-bottom:16px">Every tool returns a financial exposure in INR — Trust Capital, Culture Yield, Signal Intelligence, and Belonging Premium — creating your Human P&L entry for the month.</p>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--purple);padding:12px 16px;background:rgba(99,102,241,.07);border-radius:8px;line-height:1.6">PACT &middot; SIGNAL &middot; INFLUENCE &middot; ARIA<br>All four tools return Humacity outputs</div>
+      </div>
     </div>
   </div>
 </section>
 
-<section style="padding:100px 60px;border-top:1px solid var(--rule);position:relative;z-index:1">
-  <div class="eyebrow reveal" style="margin-bottom:28px">The shift in how HR speaks</div>
-  <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(26px,3.5vw,44px);font-weight:700;line-height:1.15;letter-spacing:-.02em;color:rgba(244,243,255,.8);margin-bottom:0" class="reveal">Two versions of the same conversation.</div>
-  <div class="shift-grid reveal">
-    <div class="shift-col">
-      <div class="shift-colhead" style="color:var(--dim);background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07)">Before Virorah</div>
-      <div class="shift-card before">&ldquo;We had some attrition issues last quarter. Mostly mid-level. I think it&rsquo;s a culture thing.&rdquo;</div>
-      <div class="shift-card before">&ldquo;The termination had some process gaps. We&rsquo;re reviewing our documentation internally.&rdquo;</div>
-      <div class="shift-card before">&ldquo;I need the L&amp;D budget approved. It&rsquo;s important for employee engagement.&rdquo;</div>
-    </div>
-    <div class="shift-col">
-      <div class="shift-colhead" style="color:var(--purple);background:rgba(99,102,241,.07);border:1px solid rgba(99,102,241,.2)">With Virorah</div>
-      <div class="shift-card after">&ldquo;Trust Capital degraded by <strong>&#8377;12.4L</strong> this quarter. Three unresolved cases are the source. Here&rsquo;s the intervention that recovers <strong>&#8377;8L</strong> of that by month end.&rdquo;</div>
-      <div class="shift-card after">&ldquo;Process Integrity scored Critical. Three documentation failures exposed us to <strong>&#8377;6L</strong> in legal risk. Here&rsquo;s what we close in 72 hours.&rdquo;</div>
-      <div class="shift-card after">&ldquo;The <strong>&#8377;12L</strong> L&amp;D investment hedges <strong>&#8377;48L</strong> in replacement cost if we lose 8 senior managers this year. The pilot is 50 people, 90 days, <strong>&#8377;10L</strong>. The math works.&rdquo;</div>
-    </div>
-  </div>
-</section>
-
-<section style="padding:160px 60px;border-top:1px solid var(--rule);text-align:center;position:relative;z-index:1;overflow:hidden">
-  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:400px;background:radial-gradient(ellipse,rgba(99,102,241,.11) 0%,transparent 65%);pointer-events:none"></div>
-  <div class="reveal" style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:clamp(44px,7vw,108px);line-height:.9;letter-spacing:-.02em;color:rgba(244,243,255,.82);margin-bottom:6px;position:relative;z-index:1">Navigate your next hard case</div>
-  <div class="reveal" style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(44px,7vw,108px);line-height:.9;letter-spacing:-.03em;background:linear-gradient(120deg,#6366f1,#e879f9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:52px;position:relative;z-index:1">with financial clarity.</div>
-  <div class="reveal" style="display:flex;justify-content:center;gap:16px;position:relative;z-index:1">
-    <a href="https://kumarviveksrv-cloud.github.io/situation-room/" class="btn-primary" target="_blank">Enter Situation Room &rarr;</a>
-    <a href="index.html" class="btn-ghost">Back to Virorah &rarr;</a>
+<section class="cta-sec">
+  <div class="cta-orb"></div>
+  <div class="cta-title reveal"><em>Navigate your next hard case</em><strong>with financial clarity.</strong></div>
+  <p class="cta-sub reveal">Start free. MERIDIAN setup takes 90 seconds. No credit card.</p>
+  <div class="reveal" style="display:flex;gap:12px;justify-content:center;position:relative;z-index:1">
+    <a href="https://kumarviveksrv-cloud.github.io/situation-room/" target="_blank" class="btn-p">Enter Situation Room &rarr;</a>
+    <a href="index.html" class="btn-g">&larr; Back to Virorah</a>
   </div>
 </section>
 <footer>
-  <div><span class="f-brand">Virorah</span><span class="f-tag">&mdash; Situation Room is a Virorah product</span></div>
-  <div class="f-copy">&copy; 2026 Virorah Private Limited &nbsp;&middot;&nbsp; Gurugram, India</div>
+  <div class="f-brand">Virorah &nbsp;&middot;&nbsp; Situation Room</div>
+  <ul class="f-links">
+    <li><a href="pms.html">PMS</a></li>
+    <li><a href="situation-room.html">Situation Room</a></li>
+    <li><a href="revenue-fluent.html">Revenue Fluent</a></li>
+    <li><a href="humacity.html">Humacity</a></li>
+    <li><a href="index.html">&larr; Virorah</a></li>
+  </ul>
+  <div class="f-copy">&copy; 2026 Virorah Private Limited</div>
 </footer>
-
 <script>
-(function(){var c=document.getElementById('vr-cursor');if(!c)return;document.addEventListener('mousemove',function(e){c.style.left=e.clientX+'px';c.style.top=e.clientY+'px';});document.addEventListener('mouseleave',function(){c.classList.add('hidden');});document.addEventListener('mouseenter',function(){c.classList.remove('hidden');});document.querySelectorAll('a,button,.asset,.arch-row,.num-item').forEach(function(el){el.addEventListener('mouseenter',function(){c.classList.add('expand');});el.addEventListener('mouseleave',function(){c.classList.remove('expand');});});})();
-(function(){var canvas=document.getElementById('vr-canvas');if(!canvas)return;var ctx=canvas.getContext('2d');var W,H,P=[];var cfg={count:50,connDist:115,dc:'165,180,252',lc:'99,102,241',do:.18,lo:.065,sp:.1,ds:1.0};function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}function init(){resize();P=[];for(var i=0;i<cfg.count;i++)P.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*cfg.sp,vy:(Math.random()-.5)*cfg.sp,r:Math.random()*cfg.ds+.4,o:Math.random()*cfg.do+.07});}function draw(){ctx.clearRect(0,0,W,H);for(var i=0;i<P.length;i++)for(var j=i+1;j<P.length;j++){var dx=P[i].x-P[j].x,dy=P[i].y-P[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<cfg.connDist){ctx.beginPath();ctx.strokeStyle='rgba('+cfg.lc+','+(1-d/cfg.connDist)*cfg.lo+')';ctx.lineWidth=.5;ctx.moveTo(P[i].x,P[i].y);ctx.lineTo(P[j].x,P[j].y);ctx.stroke();}}for(var k=0;k<P.length;k++){var p=P[k];ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba('+cfg.dc+','+p.o+')';ctx.fill();p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;}requestAnimationFrame(draw);}window.addEventListener('resize',resize);init();draw();setTimeout(function(){canvas.classList.add('ready');},500);})();
-var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.07});document.querySelectorAll('.reveal').forEach(function(r){obs.observe(r);});
-window.addEventListener('scroll',function(){var nav=document.getElementById('main-nav');if(!nav)return;if(window.scrollY>80){nav.style.background='rgba(5,4,16,.92)';nav.style.backdropFilter='blur(20px)';nav.style.borderBottom='1px solid rgba(255,255,255,.06)';}else{nav.style.background='';nav.style.backdropFilter='';nav.style.borderBottom='';}});
+var obs=new IntersectionObserver(function(e){e.forEach(function(i){if(i.isIntersecting)i.target.classList.add('visible');});},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(function(r){obs.observe(r);});
+window.addEventListener('scroll',function(){document.getElementById('main-nav').classList.toggle('scrolled',window.scrollY>40);});
 </script>
 </body></html>
