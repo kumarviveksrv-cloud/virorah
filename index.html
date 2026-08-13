@@ -32,13 +32,13 @@
     #hero{
       position:relative;
       width:100vw;
-      min-height:100vh;
+      min-height:120vh;
       overflow:hidden;
       display:flex;
       flex-direction:column;
       align-items:center;
       justify-content:flex-end;
-      padding:0 24px 72px;
+      padding:0 24px 60px;
     }
     #vr-globe{
       position:absolute;
@@ -558,9 +558,9 @@
     H = cv.height = hero ? hero.offsetHeight : window.innerHeight;
     CX = W * 0.5;
     // Globe vertically centered in upper 65% of hero so it dominates above the text
-    CY = H * 0.46;
+    CY = H * 0.52;
     // SR bumped to 0.40 (was 0.34) — matches PMS globe dominance
-    SR = Math.min(W, H) * 0.40;
+    SR = Math.min(W, H) * 0.46;
   }
 
   function tryStart(){
