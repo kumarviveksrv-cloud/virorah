@@ -32,7 +32,7 @@
     #hero{
       position:relative;
       width:100vw;
-      min-height:120vh;
+      min-height:130vh;
       overflow:hidden;
       display:flex;
       flex-direction:column;
@@ -476,21 +476,7 @@
       cx.lineWidth=0.7; cx.stroke();
     });
 
-    // 2. VIRORAH center text
-    var centerFontSize = Math.round(SR * 0.74);
-    cx.save();
-    cx.font = '800 ' + centerFontSize + 'px "Space Grotesk",sans-serif';
-    cx.textAlign = 'center';
-    cx.textBaseline = 'middle';
-    cx.shadowColor = 'rgba(99,102,241,0.95)';
-    cx.shadowBlur = 80;
-    cx.fillStyle = 'rgba(196,181,253,0.09)';
-    cx.fillText('VIRORAH', CX, CY);
-    cx.shadowBlur = 40;
-    cx.fillStyle = 'rgba(165,180,252,0.06)';
-    cx.fillText('VIRORAH', CX, CY);
-    cx.shadowBlur = 0;
-    cx.restore();
+
 
     // 3. universe words + sphere nodes sorted back-to-front
     var sorted = allObjects.slice().sort(function(a,b){return a.z-b.z;});
@@ -557,9 +543,7 @@
     W = cv.width = hero ? hero.offsetWidth : window.innerWidth;
     H = cv.height = hero ? hero.offsetHeight : window.innerHeight;
     CX = W * 0.5;
-    // Globe vertically centered in upper 65% of hero so it dominates above the text
-    CY = H * 0.52;
-    // SR bumped to 0.40 (was 0.34) — matches PMS globe dominance
+    CY = H * 0.47;
     SR = Math.min(W, H) * 0.46;
   }
 
