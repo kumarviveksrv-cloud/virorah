@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>About — Kumar Vivek & Virorah</title>
+  <meta name="description" content="Kumar Vivek is the founder of Virorah, building software that turns professional expertise into the language of business."/>
+  <link rel="apple-touch-icon" href="favicon.png"/>
+  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet"/>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LX4C03K8LK"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-LX4C03K8LK');</script>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    :root{--bg:#050410;--card:#11102a;--purple:#6366f1;--violet:#7c3aed;--rose:#e879f9;--text:#f4f3ff;--muted:#a5b4fc;--border:rgba(99,102,241,.18);--dim:rgba(165,180,252,.28)}
+    body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;overflow-x:hidden}
+    ::selection{background:rgba(99,102,241,.35)}
+    ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--purple),var(--violet));border-radius:2px}
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:12px 52px;display:flex;align-items:center;justify-content:space-between;transition:background .4s,border-bottom .4s}
+    nav.scrolled{background:rgba(5,4,16,.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(99,102,241,.12)}
+    .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .nav-brand-name{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;color:var(--text)}
+    .nav-back{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;color:rgba(165,180,252,.55);text-decoration:none;background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.2);padding:8px 16px;border-radius:8px;transition:all .2s}
+    .nav-back:hover{color:#a5b4fc;background:rgba(99,102,241,.16)}
+    @media(max-width:768px){nav{padding:16px 24px}}
+    /* HERO */
+    .hero{padding:140px 52px 80px;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+    @media(max-width:900px){.hero{grid-template-columns:1fr;padding:120px 24px 60px;gap:48px}}
+    .hero-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--purple);margin-bottom:20px;display:flex;align-items:center;gap:10px}
+    .hero-eyebrow::before{content:'';width:22px;height:1.5px;background:var(--purple)}
+    .hero-name{font-family:'Cormorant Garamond',serif;font-size:clamp(42px,6vw,76px);font-weight:700;line-height:1;letter-spacing:-.02em;color:var(--text);margin-bottom:8px}
+    .hero-role{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(165,180,252,.5);margin-bottom:28px}
+    .hero-stmt{font-family:'Cormorant Garamond',serif;font-size:clamp(18px,2.2vw,26px);font-weight:300;line-height:1.55;color:rgba(244,243,255,.72);margin-bottom:36px}
+    .hero-stmt em{font-style:italic;color:var(--muted)}
+    .cta-row{display:flex;gap:12px;flex-wrap:wrap}
+    .btn-linkedin{display:inline-flex;align-items:center;gap:10px;padding:13px 24px;border-radius:9px;font-size:14px;font-weight:700;background:linear-gradient(135deg,#0077b5,#005f8e);color:#fff;text-decoration:none;box-shadow:0 4px 24px rgba(0,119,181,.35);transition:all .2s}
+    .btn-linkedin:hover{transform:translateY(-2px);box-shadow:0 6px 32px rgba(0,119,181,.5)}
+    .btn-back{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:9px;font-size:14px;font-weight:500;background:transparent;border:1px solid rgba(244,243,255,.12);color:rgba(244,243,255,.55);text-decoration:none;transition:all .2s}
+    .btn-back:hover{border-color:var(--border);color:var(--muted);background:rgba(99,102,241,.08)}
+    /* MONOGRAM */
+    .monogram-wrap{display:flex;justify-content:center;align-items:center}
+    .monogram{width:240px;height:240px;border-radius:50%;background:linear-gradient(135deg,rgba(99,102,241,.15),rgba(124,58,237,.08));border:1px solid rgba(99,102,241,.25);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative}
+    .monogram::before{content:'';position:absolute;inset:-12px;border-radius:50%;border:1px solid rgba(99,102,241,.1);animation:rotateBorder 20s linear infinite}
+    @keyframes rotateBorder{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+    .monogram-initials{font-family:'Cormorant Garamond',serif;font-size:72px;font-weight:700;background:linear-gradient(135deg,#c4b5fd,var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
+    .monogram-tag{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(165,180,252,.4);margin-top:8px}
+    /* SECTIONS */
+    .sec{padding:72px 52px;border-top:1px solid rgba(99,102,241,.1)}
+    .sec-inner{max-width:1100px;margin:0 auto}
+    @media(max-width:768px){.sec{padding:48px 24px}}
+    .sec-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--purple);margin-bottom:16px;display:flex;align-items:center;gap:10px}
+    .sec-eyebrow::before{content:'';width:20px;height:1.5px;background:var(--purple)}
+    /* STORY */
+    .story-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+    @media(max-width:900px){.story-grid{grid-template-columns:1fr;gap:40px}}
+    .story-title{font-family:'Cormorant Garamond',serif;font-size:clamp(26px,3.5vw,42px);font-weight:400;line-height:1.2;color:var(--text);margin-bottom:28px}
+    .story-title em{font-style:italic;color:var(--muted)}
+    .story-body{font-size:15px;color:rgba(244,243,255,.5);line-height:1.85;margin-bottom:20px}
+    .story-body strong{color:rgba(244,243,255,.75);font-weight:600}
+    /* STATS */
+    .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.12);border-radius:14px;overflow:hidden;margin-bottom:48px}
+    @media(max-width:600px){.stat-row{grid-template-columns:1fr}}
+    .stat-box{padding:28px;background:var(--bg);text-align:center}
+    .stat-n{font-family:'Space Grotesk',sans-serif;font-size:36px;font-weight:700;background:linear-gradient(135deg,#c4b5fd,var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:6px}
+    .stat-l{font-family:'JetBrains Mono',monospace;font-size:9px;color:rgba(165,180,252,.45);letter-spacing:.1em;text-transform:uppercase;line-height:1.6}
+    /* PHILOSOPHY CARD */
+    .phi-card{background:var(--card);border:1px solid rgba(99,102,241,.15);border-radius:16px;padding:36px}
+    .phi-quote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(20px,2.5vw,28px);font-weight:600;line-height:1.35;color:rgba(244,243,255,.85);margin-bottom:20px}
+    .phi-attr{font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(165,180,252,.4);letter-spacing:.08em;text-transform:uppercase}
+    /* PRODUCTS CTA */
+    .products-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media(max-width:600px){.products-grid{grid-template-columns:1fr}}
+    .prod-cta-card{background:var(--card);border:1px solid rgba(99,102,241,.14);border-radius:14px;padding:28px;text-decoration:none;display:block;transition:transform .25s,border-color .25s}
+    .prod-cta-card:hover{transform:translateY(-3px);border-color:rgba(99,102,241,.35)}
+    .prod-cta-tag{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--purple);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+    .prod-cta-name{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--text);margin-bottom:8px}
+    .prod-cta-desc{font-size:13px;color:rgba(244,243,255,.45);line-height:1.7;margin-bottom:14px}
+    .prod-cta-arrow{font-size:12px;font-weight:600;color:var(--purple)}
+    /* FOOTER */
+    footer{border-top:1px solid rgba(99,102,241,.1);padding:32px 52px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+    @media(max-width:600px){footer{flex-direction:column;text-align:center;padding:24px}}
+    .f-brand{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:700;color:rgba(244,243,255,.3)}
+    .f-links{display:flex;gap:22px;list-style:none}
+    .f-links a{font-size:12px;color:rgba(244,243,255,.22);text-decoration:none;transition:color .2s}
+    .f-links a:hover{color:var(--muted)}
+    .f-copy{font-size:10px;color:rgba(244,243,255,.18);font-family:'JetBrains Mono',monospace}
+    /* REVEAL */
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .75s ease,transform .75s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    .d1{transition-delay:.1s}.d2{transition-delay:.2s}
+  </style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <a href="index.html" class="nav-logo">
+    <img src="Virorah_Dark_Background_2.png" alt="Virorah" style="height:40px;width:auto;display:block;object-fit:contain;" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+    <span style="display:none;font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;color:#f4f3ff">Virorah</span>
+  </a>
+  <a href="index.html" class="nav-back">&larr; Back to Virorah</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <div class="hero-eyebrow">The Founder</div>
+    <div class="hero-name">Kumar<br>Vivek</div>
+    <div class="hero-role">Founder &middot; Virorah &middot; Gurugram, India</div>
+    <p class="hero-stmt">Building software that gives professionals <em>the language</em> their expertise always deserved &mdash; but never had.</p>
+    <div class="cta-row">
+      <a href="https://www.linkedin.com/in/kumarvivek0301/" target="_blank" rel="noopener" class="btn-linkedin" onclick="gtag('event','click',{event_category:'about',event_label:'linkedin'})">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        Connect on LinkedIn
+      </a>
+      <a href="mailto:info@virorah.com" class="btn-back">Get in touch &rarr;</a>
+    </div>
+  </div>
+  <div class="monogram-wrap">
+    <div class="monogram">
+      <div class="monogram-initials">KV</div>
+      <div class="monogram-tag">Virorah &middot; Founder</div>
+    </div>
+  </div>
+</div>
+
+<!-- THE STORY -->
+<section class="sec">
+  <div class="sec-inner">
+    <div class="sec-eyebrow reveal">The Origin</div>
+    <div class="story-grid">
+      <div>
+        <div class="story-title reveal">The gap was too <em>expensive</em> to leave unfilled.</div>
+        <p class="story-body reveal d1">I spent years watching professionals with extraordinary expertise get sidelined in budget conversations. Not because they were wrong. Because they couldn't put a number on what they knew. They had the instinct, the experience, the depth. What they didn't have was <strong>the language</strong>.</p>
+        <p class="story-body reveal d1">That language exists. Finance has always spoken it. Sales speaks it. HR &mdash; despite sitting at the centre of every organisation's most consequential decisions &mdash; was still translating people into headcount, not P&amp;L lines.</p>
+        <p class="story-body reveal d1">That is a product problem. So I built the product.</p>
+      </div>
+      <div>
+        <p class="story-body reveal">The first version was a single HR tool. A PMS simulator that let HR professionals actually run a performance cycle before they were in one. It worked. People kept coming back not because it was a course they finished &mdash; but because performance management kept being hard, on a schedule nobody warned them about.</p>
+        <p class="story-body reveal">From that first tool grew a philosophy: <strong>every people decision has a financial dimension.</strong> Virorah is the software that surfaces it. Across performance management, ER intelligence, stakeholder influence, and the Humac Score that finally gives HR a composite financial number to walk into any room with.</p>
+        <p class="story-body reveal">We are based in Gurugram, India. Building for Indian professionals first. Global professionals next.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIRORAH IN NUMBERS -->
+<section class="sec">
+  <div class="sec-inner">
+    <div class="sec-eyebrow reveal">Virorah Today</div>
+    <div class="stat-row reveal" style="margin-top:24px">
+      <div class="stat-box"><div class="stat-n">2</div><div class="stat-l">Products in the<br>Virorah Universe</div></div>
+      <div class="stat-box"><div class="stat-n">16</div><div class="stat-l">Live PMS calculators<br>built and running</div></div>
+      <div class="stat-box"><div class="stat-n">5</div><div class="stat-l">Humac pillars<br>measuring HR's P&amp;L</div></div>
+    </div>
+
+    <!-- PHILOSOPHY CARD -->
+    <div class="phi-card reveal">
+      <div class="phi-quote">&ldquo;Finance has a balance sheet. Sales has a pipeline. HR has had a headcount. Not because the numbers don&rsquo;t exist. Because nobody formatted them correctly.&rdquo;</div>
+      <div class="phi-attr">Humacity &mdash; The operating philosophy behind Virorah &middot; <a href="https://humacity.com/" target="_blank" style="color:var(--purple);text-decoration:none">Read the full philosophy &rarr;</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPLORE THE PRODUCTS -->
+<section class="sec">
+  <div class="sec-inner">
+    <div class="sec-eyebrow reveal">The Products</div>
+    <div class="products-grid" style="margin-top:24px">
+      <a href="https://pms.virorah.com/" target="_blank" class="prod-cta-card reveal" onclick="gtag('event','click',{event_category:'about',event_label:'pms_click'})">
+        <div class="prod-cta-tag"><span style="width:6px;height:6px;border-radius:50%;background:#22c55e;display:inline-block"></span>Live Now</div>
+        <div class="prod-cta-name">Virorah PMS</div>
+        <div class="prod-cta-desc">The performance intelligence operating system for HR professionals. FORGE diagnostic engine, AI conversation simulator, 3D talent galaxy. 16 calculators. 4 certifications.</div>
+        <div class="prod-cta-arrow">Enter Virorah PMS &rarr;</div>
+      </a>
+      <div class="prod-cta-card reveal d1" style="cursor:default">
+        <div class="prod-cta-tag">&#x23F3; Coming Soon</div>
+        <div class="prod-cta-name">Virorah Vantage</div>
+        <div class="prod-cta-desc">HR intelligence for every hard moment. ER cases, legal guidance, stakeholder influence &mdash; calibrated to Indian employment law and your exact professional context.</div>
+        <div style="margin-top:14px">
+          <input type="email" id="about-notify-email" placeholder="your@email.com" style="width:100%;padding:9px 12px;background:rgba(5,4,16,.6);border:1px solid rgba(99,102,241,.2);border-radius:7px;color:#f4f3ff;font-family:'DM Sans',sans-serif;font-size:13px;margin-bottom:8px;outline:none"/>
+          <button onclick="submitAboutNotify()" style="width:100%;padding:10px;background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.3);border-radius:7px;color:#a5b4fc;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s">Notify me when ready</button>
+          <div id="about-notify-success" style="display:none;font-family:'JetBrains Mono',monospace;font-size:11px;color:#10b981;margin-top:10px;letter-spacing:.04em">&#x2713; You&rsquo;re on the list.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="f-brand">Virorah</div>
+  <ul class="f-links">
+    <li><a href="index.html">&larr; Home</a></li>
+    <li><a href="https://pms.virorah.com/" target="_blank">Virorah PMS</a></li>
+    <li><a href="https://humacity.com/" target="_blank">Humacity</a></li>
+    <li><a href="mailto:info@virorah.com">Contact</a></li>
+  </ul>
+  <div class="f-copy">&copy; 2026 Virorah Private Limited</div>
+</footer>
+
+<script>
+function submitAboutNotify() {
+  var email = (document.getElementById('about-notify-email').value || '').trim();
+  if (!email || !email.includes('@')) {
+    document.getElementById('about-notify-email').style.borderColor = 'rgba(244,67,54,.5)';
+    return;
+  }
+  gtag('event','sign_up',{event_category:'vantage_waitlist',event_label:'about_page_notify'});
+  fetch('https://situation-room-api.kumarvivek-srv.workers.dev/notify', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: email, name: '', source: 'about.html' })
+  }).catch(function(){}).finally(function() {
+    document.getElementById('about-notify-email').style.display = 'none';
+    document.getElementById('about-notify-email').nextElementSibling.style.display = 'none';
+    document.getElementById('about-notify-success').style.display = 'block';
+  });
+}
+var obs = new IntersectionObserver(function(e){e.forEach(function(i){if(i.isIntersecting)i.target.classList.add('visible');});},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(function(r){obs.observe(r);});
+window.addEventListener('scroll',function(){document.getElementById('main-nav').classList.toggle('scrolled',window.scrollY>40);});
+</script>
+
+</body>
+</html>
