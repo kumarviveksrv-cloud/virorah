@@ -189,8 +189,11 @@
         <div style="display:inline-flex;align-items:center;gap:5px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(99,102,241,.7);background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.2);border-radius:20px;padding:3px 10px;margin-bottom:14px">&#x1F1EE;&#x1F1F3; Built for Indian HR</div>
         <div class="prod-body">Six intelligence tools for every hard HR moment &mdash; ER cases, stakeholder influence, data storytelling, policy guidance, and conversation practice with AI. Built on Indian employment law, Indian org reality, and the MERIDIAN professional profile. Powered by the Humac Score.</div>
         <div class="notify-form" id="notify-form">
-          <input type="email" class="notify-input" id="notify-email" placeholder="your@email.com" />
-          <button class="notify-btn" onclick="submitNotify()">Notify me when ready</button>
+          <input type="text" class="notify-input" id="notify-name" placeholder="Your name" style="margin-bottom:8px;width:100%" />
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <input type="email" class="notify-input" id="notify-email" placeholder="your@email.com" style="flex:1;min-width:160px" />
+            <button class="notify-btn" onclick="submitNotify()">Notify me when ready</button>
+          </div>
         </div>
         <div class="notify-success" id="notify-success">&#x2713; You&rsquo;re on the list. We&rsquo;ll reach out when Vantage launches.</div>
       </div>
@@ -281,11 +284,17 @@
 <script>
 // Notify me form — saves to Airtable Early_Access_Applications
 function submitNotify() {
-  var email = document.getElementById('notify-email').value.trim();
+  var name  = (document.getElementById('notify-name').value || '').trim();
+  var email = (document.getElementById('notify-email').value || '').trim();
+  if (!name) {
+    document.getElementById('notify-name').style.borderColor = 'rgba(244,67,54,.5)';
+    return;
+  }
   if (!email || !email.includes('@')) {
     document.getElementById('notify-email').style.borderColor = 'rgba(244,67,54,.5)';
     return;
   }
+  document.getElementById('notify-name').style.borderColor = 'rgba(99,102,241,.25)';
   document.getElementById('notify-email').style.borderColor = 'rgba(99,102,241,.25)';
   var btn = document.querySelector('.notify-btn');
   btn.textContent = 'Saving...';
@@ -293,7 +302,7 @@ function submitNotify() {
   fetch('https://situation-room-api.kumarvivek-srv.workers.dev/notify', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email: email })
+    body: JSON.stringify({ name: name, email: email })
   }).catch(function(){}).finally(function() {
     document.getElementById('notify-form').style.display = 'none';
     document.getElementById('notify-success').style.display = 'block';
