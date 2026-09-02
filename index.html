@@ -8,6 +8,14 @@
   <link rel="apple-touch-icon" href="favicon.png"/>
   <link rel="icon" type="image/png" href="favicon.png"/>
   <link rel="shortcut icon" href="favicon.png"/>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LX4C03K8LK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-LX4C03K8LK');
+  </script>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet"/>
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
@@ -130,8 +138,8 @@
   </a>
   <ul class="nav-links">
     <li><a href="#products">Products</a></li>
-    <li><a href="humacity.html">Philosophy</a></li>
-    <li><a href="#about">About</a></li>
+    <li><a href="https://humacity.com/">Philosophy</a></li>
+    <li><a href="about.html">About</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <a href="#products" class="nav-cta">Explore Products</a>
@@ -148,7 +156,7 @@
     <div class="hero-sub">Starting with HR.</div>
     <div class="hero-ctas">
       <a href="#products" class="btn-p">Explore our products</a>
-      <a href="humacity.html" class="btn-g">Read the philosophy &rarr;</a>
+      <a href="https://humacity.com/" class="btn-g">Read the philosophy &rarr;</a>
     </div>
   </div>
 </section>
@@ -169,7 +177,7 @@
     <div class="prod-grid">
 
       <!-- PMS — LIVE -->
-      <a href="https://pms.virorah.com/" target="_blank" class="prod-card reveal">
+      <a href="https://pms.virorah.com/" target="_blank" class="prod-card reveal" onclick="gtag('event','click',{event_category:'product',event_label:'pms_enter'})">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
           <div class="prod-tag">Performance Management</div>
           <div style="display:inline-flex;align-items:center;gap:5px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#22c55e;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);border-radius:20px;padding:3px 10px"><span style="width:5px;height:5px;border-radius:50%;background:#22c55e;display:inline-block;animation:livePulse 1.8s ease-in-out infinite"></span>Live</div>
@@ -213,7 +221,7 @@
         <div class="sec-eyebrow">The philosophy</div>
         <div class="phi-quote">&ldquo;Every people decision has a financial dimension.&rdquo;</div>
         <p class="phi-body">Humacity is the operating framework that powers every Virorah product. It holds that HR is not a support function &mdash; it is a P&amp;L operator. Every hire, every case, every culture decision has a measurable financial value. Humacity names it. Humac measures it.</p>
-        <a href="humacity.html" class="phi-link">Read the Humacity philosophy &rarr;</a>
+        <a href="https://humacity.com/" class="phi-link">Read the Humacity philosophy &rarr;</a>
       </div>
       <div class="h-grid">
         <div class="h-card"><div class="h-pillar">L1 &middot; 25%</div><div class="h-name">Value Ledger</div><div class="h-desc">Every HR decision has a financial entry. The foundation of the Humac Score.</div></div>
@@ -254,7 +262,7 @@
         </div>
       </div>
       <div class="about-details">
-        <div><div class="d-label">Founded</div><div class="d-val">2025 &mdash; started as a single HR tool, grew into a platform philosophy powered by Humacity.</div></div>
+        <div><div class="d-label">Founded</div><div class="d-val">2026 &mdash; started as a single HR tool, grew into a platform philosophy powered by Humacity.</div></div>
         <div><div class="d-label">Headquarters</div><div class="d-val">Gurugram, India. Building for Indian professionals first, global professionals next.</div></div>
         <div><div class="d-label">Philosophy</div><div class="d-val">Every people decision has a financial dimension. Virorah builds the software that surfaces it.</div></div>
         <div id="contact"><div class="d-label">Contact</div><div class="d-val"><a href="mailto:info@virorah.com" style="color:rgba(244,243,255,.5);text-decoration:none">info@virorah.com</a></div></div>
@@ -269,7 +277,7 @@
   <p class="cta-sub reveal">Two products. One philosophy. The Virorah Universe.</p>
   <div class="reveal" style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1">
     <a href="#products" class="btn-p">Explore all products</a>
-    <a href="humacity.html" class="btn-g">Read Humacity &rarr;</a>
+    <a href="https://humacity.com/" class="btn-g">Read Humacity &rarr;</a>
   </div>
   <div class="cta-note reveal">Gurugram, India &nbsp;&middot;&nbsp; Two products &nbsp;&middot;&nbsp; One philosophy &nbsp;&middot;&nbsp; info@virorah.com</div>
 </section>
@@ -279,7 +287,8 @@
   <ul class="f-links">
     <li><a href="pms.html">Virorah PMS</a></li>
     <li><a href="vantage.html">Vantage</a></li>
-    <li><a href="humacity.html">Humacity</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="https://humacity.com/">Humacity</a></li>
     <li><a href="mailto:info@virorah.com">Contact</a></li>
   </ul>
   <div class="f-copy">&copy; 2026 Virorah Private Limited &nbsp;&middot;&nbsp; The Virorah Universe</div>
@@ -303,6 +312,7 @@ function submitNotify() {
   var btn = document.querySelector('.notify-btn');
   btn.textContent = 'Saving...';
   btn.disabled = true;
+  gtag('event','sign_up',{event_category:'vantage_waitlist',event_label:'notify_me'});
   fetch('https://situation-room-api.kumarvivek-srv.workers.dev/notify', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
