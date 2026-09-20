@@ -119,10 +119,11 @@
     </div>
   </div>
   <div class="monogram-wrap">
-    <div class="monogram">
-      <div class="monogram-initials">KV</div>
-      <div class="monogram-tag">Virorah &middot; Founder</div>
+    <div class="monogram" style="padding:0;overflow:hidden;background:none">
+      <img src="kumar-vivek.png" alt="Kumar Vivek — Founder, Virorah"
+           style="width:100%;height:100%;object-fit:cover;object-position:center top;border-radius:50%;display:block"/>
     </div>
+    <div class="monogram-tag" style="margin-top:12px;text-align:center">Virorah &middot; Founder</div>
   </div>
 </div>
 
@@ -175,49 +176,32 @@
         <div class="prod-cta-desc">The performance intelligence operating system for HR professionals. FORGE diagnostic engine, AI conversation simulator, 3D talent galaxy. 16 calculators. 4 certifications.</div>
         <div class="prod-cta-arrow">Enter Virorah PMS &rarr;</div>
       </a>
-      <div class="prod-cta-card reveal d1" style="cursor:default">
-        <div class="prod-cta-tag">&#x23F3; Coming Soon</div>
+      <a href="https://vantage.virorah.com" target="_blank" class="prod-cta-card reveal d1" onclick="gtag('event','click',{event_category:'about',event_label:'vantage_click'})">
+        <div class="prod-cta-tag"><span style="width:6px;height:6px;border-radius:50%;background:#34d399;display:inline-block"></span> Early Access</div>
         <div class="prod-cta-name">Virorah Vantage</div>
         <div class="prod-cta-desc">HR intelligence for every hard moment. ER cases, legal guidance, stakeholder influence &mdash; calibrated to Indian employment law and your exact professional context.</div>
-        <div style="margin-top:14px">
-          <input type="email" id="about-notify-email" placeholder="your@email.com" style="width:100%;padding:9px 12px;background:rgba(5,4,16,.6);border:1px solid rgba(99,102,241,.2);border-radius:7px;color:#f4f3ff;font-family:'DM Sans',sans-serif;font-size:13px;margin-bottom:8px;outline:none"/>
-          <button onclick="submitAboutNotify()" style="width:100%;padding:10px;background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.3);border-radius:7px;color:#a5b4fc;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s">Notify me when ready</button>
-          <div id="about-notify-success" style="display:none;font-family:'JetBrains Mono',monospace;font-size:11px;color:#10b981;margin-top:10px;letter-spacing:.04em">&#x2713; You&rsquo;re on the list.</div>
-        </div>
-      </div>
+        <div class="prod-cta-arrow">Enter Virorah Vantage &rarr;</div>
+      </a>
     </div>
   </div>
 </section>
 
 <footer>
-  <div class="f-brand">Virorah</div>
+  <div>
+    <div class="f-brand">Virorah</div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.12em;color:rgba(165,180,252,.35);margin-top:4px;text-transform:uppercase">We turn expertise into business language</div>
+  </div>
   <ul class="f-links">
     <li><a href="index.html">&larr; Home</a></li>
     <li><a href="https://pms.virorah.com/" target="_blank">Virorah PMS</a></li>
+    <li><a href="https://vantage.virorah.com/" target="_blank">Virorah Vantage</a></li>
     <li><a href="https://humacity.com/" target="_blank">Humacity</a></li>
     <li><a href="mailto:info@virorah.com">Contact</a></li>
   </ul>
-  <div class="f-copy">&copy; 2026 Virorah Private Limited</div>
+  <div class="f-copy">&copy; 2026 Virorah Private Limited. All rights reserved.</div>
 </footer>
 
 <script>
-function submitAboutNotify() {
-  var email = (document.getElementById('about-notify-email').value || '').trim();
-  if (!email || !email.includes('@')) {
-    document.getElementById('about-notify-email').style.borderColor = 'rgba(244,67,54,.5)';
-    return;
-  }
-  gtag('event','sign_up',{event_category:'vantage_waitlist',event_label:'about_page_notify'});
-  fetch('https://situation-room-api.kumarvivek-srv.workers.dev/notify', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email: email, name: '', source: 'about.html' })
-  }).catch(function(){}).finally(function() {
-    document.getElementById('about-notify-email').style.display = 'none';
-    document.getElementById('about-notify-email').nextElementSibling.style.display = 'none';
-    document.getElementById('about-notify-success').style.display = 'block';
-  });
-}
 var obs = new IntersectionObserver(function(e){e.forEach(function(i){if(i.isIntersecting)i.target.classList.add('visible');});},{threshold:.08});
 document.querySelectorAll('.reveal').forEach(function(r){obs.observe(r);});
 window.addEventListener('scroll',function(){document.getElementById('main-nav').classList.toggle('scrolled',window.scrollY>40);});
