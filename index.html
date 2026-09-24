@@ -529,7 +529,7 @@ footer{padding:44px 48px;border-top:1px solid var(--border);background:var(--bg)
   // Pre-build textures
   var texPool = WORDS.map(function(w){ return makeWordTexture(w); });
 
-  var SPRITE_N = 100;
+  var SPRITE_N = 55;
   var sprites = [];
 
   function resetSprite(d, full){
@@ -539,13 +539,13 @@ footer{padding:44px 48px;border-top:1px solid var(--border);background:var(--bg)
       d.sprite.material.map = tc.tex;
       d.sprite.material.needsUpdate = true;
     }
-    var sc = 0.25 + Math.random()*0.35;
-    d.sprite.scale.set(sc*tc.aspect*7, sc*7, 1);
+    var sc = 0.036 + Math.random()*0.038;
+    d.sprite.scale.set(sc*tc.aspect*4, sc*4, 1);
     // Spread to cover full viewport
-    d.sprite.position.x = (Math.random()-0.5)*10;
-    d.sprite.position.y = (Math.random()-0.5)*6;
+    d.sprite.position.x = (Math.random()-0.5)*6;
+    d.sprite.position.y = (Math.random()-0.5)*3.5;
     d.sprite.position.z = full ? -15+Math.random()*12 : -16+Math.random()*2;
-    d.speed = 0.035 + Math.random()*0.055;
+    d.speed = 0.01 + Math.random()*0.018;
     d.sprite.material.opacity = 0;
     d.sprite.material.needsUpdate = true;
   }
@@ -608,11 +608,11 @@ footer{padding:44px 48px;border-top:1px solid var(--border);background:var(--bg)
       var z=d.sprite.position.z;
       var prog=(z+16)/18; // 0 far, 1 close to camera
       if(prog < 0.65){
-        d.sprite.material.opacity = Math.min(0.82, prog*2.2);
+        d.sprite.material.opacity = Math.min(0.36, prog*1.3);
       }
       // Fade out as passing camera
-      if(z > 1.8){
-        d.sprite.material.opacity *= 0.88;
+      if(z > 0.6){
+        d.sprite.material.opacity *= 0.87;
       }
       if(z > 3.0){
         resetSprite(d, false);
