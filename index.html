@@ -258,7 +258,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;height:68px;padding:0 48px;d
 .arc-wrap{position:relative;width:160px;height:160px;margin:0 auto 20px}
 .arc-svg{width:160px;height:160px;transform:rotate(-90deg);overflow:visible}
 .arc-track{fill:none;stroke:rgba(99,102,241,.1);stroke-width:5}
-.arc-fill{fill:none;stroke-width:5;stroke-linecap:round;stroke-dasharray:327;stroke-dashoffset:327;transition:stroke-dashoffset 1.8s cubic-bezier(.25,.46,.45,.94);filter:drop-shadow(0 0 8px currentColor)}
+.arc-fill{fill:none;stroke-width:5;stroke-linecap:round;stroke-dasharray:327;stroke-dashoffset:327;transition:stroke-dashoffset 1.8s cubic-bezier(.25,.46,.45,.94);filter:drop-shadow(0 0 8px currentColor);animation:arcGlow 3s ease-in-out infinite}
 .arc-fill.l1{stroke:#6366f1;color:#6366f1}
 .arc-fill.l2{stroke:#818cf8;color:#818cf8}
 .arc-fill.l3{stroke:#a78bfa;color:#a78bfa}
@@ -267,7 +267,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;height:68px;padding:0 48px;d
 .arc-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .arc-pct-num{font-family:var(--fs);font-weight:700;font-size:30px;background:linear-gradient(135deg,#f4f3ff,#a5b4fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
 .arc-pct-sym{font-family:var(--fm);font-size:13px;color:var(--dim);margin-top:2px}
-.arc-l{font-family:var(--fm);font-size:10px;letter-spacing:.14em;color:var(--ink);margin-bottom:6px}
+.arc-l{font-family:var(--fm);font-size:10px;letter-spacing:.14em;color:#b197fc;margin-bottom:6px}
 .arc-name{font-family:var(--fc);font-size:14px;font-weight:700;color:var(--white);letter-spacing:.04em;margin-bottom:8px}
 .arc-desc{font-size:12px;line-height:1.65;color:var(--faint);max-width:18ch;margin:0 auto}
 .humac-footer{max-width:1200px;margin:72px auto 0;text-align:center;position:relative;z-index:1}
@@ -567,6 +567,28 @@ footer{padding:44px 48px;border-top:1px solid var(--border);background:var(--bg)
   100%{top:140%}
 }
 
+
+@keyframes arcGlow{
+  0%,100%{filter:drop-shadow(0 0 6px currentColor) drop-shadow(0 0 2px currentColor)}
+  50%{filter:drop-shadow(0 0 18px currentColor) drop-shadow(0 0 36px currentColor) drop-shadow(0 0 8px currentColor)}
+}
+.arc-wrap{animation:arcBreathe 4s ease-in-out infinite}
+@keyframes arcBreathe{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.04)}
+}
+/* Stagger glow so they don't all pulse in sync */
+.arc-item:nth-child(1) .arc-fill{animation-delay:0s}
+.arc-item:nth-child(2) .arc-fill{animation-delay:.6s}
+.arc-item:nth-child(3) .arc-fill{animation-delay:1.2s}
+.arc-item:nth-child(4) .arc-fill{animation-delay:1.8s}
+.arc-item:nth-child(5) .arc-fill{animation-delay:2.4s}
+.arc-item:nth-child(1) .arc-wrap{animation-delay:0s}
+.arc-item:nth-child(2) .arc-wrap{animation-delay:.5s}
+.arc-item:nth-child(3) .arc-wrap{animation-delay:1s}
+.arc-item:nth-child(4) .arc-wrap{animation-delay:1.5s}
+.arc-item:nth-child(5) .arc-wrap{animation-delay:2s}
+
 </style>
 </head>
 <body>
@@ -674,7 +696,7 @@ footer{padding:44px 48px;border-top:1px solid var(--border);background:var(--bg)
   <div class="arc-row">
     <div class="arc-item"><div class="arc-wrap"><svg class="arc-svg" viewBox="0 0 120 120"><defs><filter id="g1"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><circle class="arc-track" cx="60" cy="60" r="52"/><circle class="arc-fill l1" cx="60" cy="60" r="52" style="stroke-dasharray:327;stroke-dashoffset:327" data-offset="245" filter="url(#g1)"/></svg><div class="arc-center"><span class="arc-pct-num" data-arc-t="25">0</span><span class="arc-pct-sym">%</span></div></div><div class="arc-l">L1</div><div class="arc-name">Value Ledger</div><div class="arc-desc">Every HR decision has a financial entry.</div></div>
     <div class="arc-item"><div class="arc-wrap"><svg class="arc-svg" viewBox="0 0 120 120"><defs><filter id="g2"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><circle class="arc-track" cx="60" cy="60" r="52"/><circle class="arc-fill l2" cx="60" cy="60" r="52" style="stroke-dasharray:327;stroke-dashoffset:327" data-offset="278" filter="url(#g2)"/></svg><div class="arc-center"><span class="arc-pct-num" data-arc-t="15">0</span><span class="arc-pct-sym">%</span></div></div><div class="arc-l">L2</div><div class="arc-name">Talent Premium</div><div class="arc-desc">Financial value of better-than-average people.</div></div>
-    <div class="arc-item"><div class="arc-wrap"><svg class="arc-svg" viewBox="0 0 120 120"><defs><filter id="g3"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><circle class="arc-track" cx="60" cy="60" r="52"/><circle class="arc-fill l3" cx="60" cy="60" r="52" style="stroke-dasharray:327;stroke-dashoffset:327" data-offset="229" filter="url(#g3)"/></svg><div class="arc-center"><span class="arc-pct-num" data-arc-t="30">0</span><span class="arc-pct-sym">%</span></div></div><div class="arc-l">L3 · Highest Weight</div><div class="arc-name">Org Vitals</div><div class="arc-desc">Pulse, metabolism, vitality of your ecosystem.</div></div>
+    <div class="arc-item"><div class="arc-wrap"><svg class="arc-svg" viewBox="0 0 120 120"><defs><filter id="g3"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><circle class="arc-track" cx="60" cy="60" r="52"/><circle class="arc-fill l3" cx="60" cy="60" r="52" style="stroke-dasharray:327;stroke-dashoffset:327" data-offset="229" filter="url(#g3)"/></svg><div class="arc-center"><span class="arc-pct-num" data-arc-t="30">0</span><span class="arc-pct-sym">%</span></div></div><div class="arc-l">L3</div><div class="arc-name">Org Vitals</div><div class="arc-desc">Pulse, metabolism, vitality of your ecosystem.</div></div>
     <div class="arc-item"><div class="arc-wrap"><svg class="arc-svg" viewBox="0 0 120 120"><defs><filter id="g4"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><circle class="arc-track" cx="60" cy="60" r="52"/><circle class="arc-fill l4" cx="60" cy="60" r="52" style="stroke-dasharray:327;stroke-dashoffset:327" data-offset="262" filter="url(#g4)"/></svg><div class="arc-center"><span class="arc-pct-num" data-arc-t="20">0</span><span class="arc-pct-sym">%</span></div></div><div class="arc-l">L4</div><div class="arc-name">Human P&amp;L</div><div class="arc-desc">Revenue from talent, cost from people failures.</div></div>
     <div class="arc-item"><div class="arc-wrap"><svg class="arc-svg" viewBox="0 0 120 120"><defs><filter id="g5"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><circle class="arc-track" cx="60" cy="60" r="52"/><circle class="arc-fill l5" cx="60" cy="60" r="52" style="stroke-dasharray:327;stroke-dashoffset:327" data-offset="294" filter="url(#g5)"/></svg><div class="arc-center"><span class="arc-pct-num" data-arc-t="10">0</span><span class="arc-pct-sym">%</span></div></div><div class="arc-l">L5</div><div class="arc-name">Human Balance Sheet</div><div class="arc-desc">Human assets, liabilities. Net Human Worth.</div></div>
   </div>
