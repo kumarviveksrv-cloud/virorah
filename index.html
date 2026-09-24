@@ -641,6 +641,8 @@ footer{padding:44px 48px;border-top:1px solid var(--border);background:var(--bg)
 (function(){
   var canvas = document.getElementById('globe');
   var scene = new THREE.Scene();
+  var globeGroup = new THREE.Group();
+  scene.add(globeGroup);
   var camera = new THREE.PerspectiveCamera(60, canvas.clientWidth/canvas.clientHeight, 0.1, 60);
   camera.position.set(0, 0, 2.6);
   var renderer = new THREE.WebGLRenderer({canvas:canvas, antialias:true, alpha:true});
@@ -659,9 +661,9 @@ footer{padding:44px 48px;border-top:1px solid var(--border);background:var(--bg)
     new THREE.SphereGeometry(1.0, 80, 80),
     new THREE.MeshStandardMaterial({color:0x0d0b1e, roughness:.18, metalness:.92, emissive:0x1e1b4b, emissiveIntensity:.55})
   );
-  scene.add(core);
+  globeGroup.add(core);
 
-  scene.add(new THREE.Mesh(
+  globeGroup.add(new THREE.Mesh(
     new THREE.SphereGeometry(1.05, 32, 32),
     new THREE.MeshBasicMaterial({color:0x6366f1, transparent:true, opacity:.05, side:THREE.BackSide})
   ));
@@ -670,11 +672,11 @@ footer{padding:44px 48px;border-top:1px solid var(--border);background:var(--bg)
     new THREE.SphereGeometry(1.03, 24, 24),
     new THREE.MeshBasicMaterial({color:0x7c3aed, wireframe:true, transparent:true, opacity:.08})
   );
-  scene.add(wire);
+  globeGroup.add(wire);
 
   function mkRing(r,tube,color,opacity,rx,ry,rz){
     var m=new THREE.Mesh(new THREE.TorusGeometry(r,tube,8,160), new THREE.MeshBasicMaterial({color:color,transparent:true,opacity:opacity}));
-    m.rotation.set(rx,ry,rz); scene.add(m); return m;
+    m.rotation.set(rx,ry,rz); globeGroup.add(m); return m;
   }
   var r1=mkRing(1.38,.005,0x6366f1,.55,Math.PI*.28,0,0);
   var r2=mkRing(1.58,.003,0xa5b4fc,.28,Math.PI*.5,0,Math.PI*.2);
@@ -694,7 +696,7 @@ footer{padding:44px 48px;border-top:1px solid var(--border);background:var(--bg)
     var geo=new THREE.BufferGeometry();
     geo.setAttribute('position',new THREE.BufferAttribute(pos,3));
     var pts=new THREE.Points(geo,new THREE.PointsMaterial({color:color,size:sz,transparent:true,opacity:.7,sizeAttenuation:true}));
-    scene.add(pts); return pts;
+    globeGroup.add(pts); return pts;
   }
   var c1=mkCloud(600,1.15,2.1,0x7c3aed,.022);
   var c2=mkCloud(200,1.02,1.15,0xa5b4fc,.035);
@@ -798,8 +800,8 @@ footer{padding:44px 48px;border-top:1px solid var(--border);background:var(--bg)
     var targetX = cursorActive ? mouseY*0.08 : 0;
     rotY += (targetY - rotY) * 0.018;
     rotX += (targetX - rotX) * 0.018;
-    scene.rotation.y = rotY;
-    scene.rotation.x = rotX;
+    globeGroup.rotation.y = rotY;
+    globeGroup.rotation.x = rotX;
 
     // Globe breathing
     core.rotation.y=t*.25; core.rotation.x=Math.sin(t*.15)*.08;
