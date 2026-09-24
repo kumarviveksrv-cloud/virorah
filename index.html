@@ -422,6 +422,152 @@ footer{padding:44px 48px;border-top:1px solid var(--border);background:var(--bg)
 .mf.on ~ .mf-burst, .mf-burst.on{opacity:1;animation:burstGlow 2s ease-out forwards}
 @keyframes burstGlow{0%{opacity:0;transform:translate(-50%,-50%) scale(.3)}30%{opacity:1}100%{opacity:0;transform:translate(-50%,-50%) scale(2.5)}}
 
+
+/* ══ PERSISTENT AMBIENT EFFECTS ═══════════════════════════════ */
+
+/* CTA: Remove overflow:hidden so rings breathe outward */
+#cta{overflow:visible!important}
+
+/* CTA: Large breathing rings — always visible */
+.cta-halo{position:absolute;top:50%;left:50%;pointer-events:none;z-index:0}
+.cta-halo-ring{
+  position:absolute;border-radius:50%;
+  transform:translate(-50%,-50%);border-style:solid;
+}
+.cta-halo-ring:nth-child(1){
+  width:320px;height:320px;
+  border:1px solid rgba(99,102,241,.35);
+  animation:haloBreath 4s ease-in-out infinite;
+}
+.cta-halo-ring:nth-child(2){
+  width:560px;height:560px;
+  border:1px solid rgba(99,102,241,.2);
+  animation:haloBreath 4s ease-in-out infinite 1.4s;
+}
+.cta-halo-ring:nth-child(3){
+  width:800px;height:800px;
+  border:1px solid rgba(99,102,241,.1);
+  animation:haloBreath 4s ease-in-out infinite 2.8s;
+}
+@keyframes haloBreath{
+  0%,100%{opacity:.5;transform:translate(-50%,-50%) scale(1)}
+  50%{opacity:1;transform:translate(-50%,-50%) scale(1.025);box-shadow:0 0 40px rgba(99,102,241,.08) inset,0 0 80px rgba(99,102,241,.05)}
+}
+
+/* CTA: Periodic scan line through the text */
+.cta-sweep{
+  position:absolute;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent 5%,rgba(99,102,241,.7) 40%,rgba(165,180,252,.8) 50%,rgba(99,102,241,.7) 60%,transparent 95%);
+  box-shadow:0 0 12px rgba(99,102,241,.6),0 0 24px rgba(99,102,241,.3);
+  pointer-events:none;z-index:5;top:0;
+  animation:sweepDown 6s ease-in-out infinite 1.5s;
+}
+@keyframes sweepDown{
+  0%{top:15%;opacity:0}
+  8%{opacity:1}
+  45%{top:85%;opacity:1}
+  55%{top:85%;opacity:0}
+  100%{top:85%;opacity:0}
+}
+
+/* CTA: Persistent text glow after reveal */
+.cta-h1.on{
+  animation:ctaH1Glow 3s ease-in-out infinite!important;
+}
+@keyframes ctaH1Glow{
+  0%,100%{text-shadow:0 0 20px rgba(165,180,252,.15)}
+  50%{text-shadow:0 0 40px rgba(165,180,252,.45),0 0 80px rgba(99,102,241,.2)}
+}
+.cta-h2.on{
+  animation:ctaH2Shimmer 4s ease-in-out infinite!important;
+}
+@keyframes ctaH2Shimmer{
+  0%,100%{filter:drop-shadow(0 0 8px rgba(99,102,241,.2))}
+  50%{filter:drop-shadow(0 0 24px rgba(99,102,241,.5)) drop-shadow(0 0 48px rgba(124,58,237,.2))}
+}
+
+/* CTA: Subtle corner HUD indicators */
+.cta-hud{
+  position:absolute;font-family:var(--fm);font-size:9px;
+  letter-spacing:.14em;color:rgba(99,102,241,.4);
+  animation:hudBlink 3s ease-in-out infinite;pointer-events:none;
+}
+@keyframes hudBlink{0%,100%{opacity:.4}50%{opacity:.9}}
+
+/* ABOUT: Persistent ambient glow behind headline */
+.about-hl-wrap{position:relative}
+.about-hl-glow{
+  position:absolute;inset:-40px;
+  background:radial-gradient(ellipse at 20% 40%,rgba(99,102,241,.08) 0%,transparent 65%);
+  pointer-events:none;
+  animation:hlGlow 5s ease-in-out infinite;
+}
+@keyframes hlGlow{
+  0%,100%{opacity:.6}
+  50%{opacity:1}
+}
+
+/* ABOUT: Quote card persistent pulse glow */
+.qcard{
+  animation:cardPulse 3.5s ease-in-out infinite!important;
+}
+@keyframes cardPulse{
+  0%,100%{box-shadow:0 0 0 0 transparent,0 0 20px rgba(99,102,241,.04)}
+  50%{box-shadow:0 0 0 1px rgba(99,102,241,.25),0 0 40px rgba(99,102,241,.12),0 0 80px rgba(99,102,241,.05)}
+}
+
+/* ABOUT: Facts — blinking data cursor on labels */
+.fact-l::after{
+  content:'_';
+  color:rgba(99,102,241,.7);
+  animation:cursorBlink 1.2s step-end infinite;
+  font-size:11px;
+  margin-left:2px;
+}
+@keyframes cursorBlink{0%,100%{opacity:1}50%{opacity:0}}
+
+/* ABOUT: Circuit accent line on left side */
+.about-circuit{
+  position:absolute;left:0;top:10%;bottom:10%;width:2px;
+  background:linear-gradient(to bottom,transparent 0%,rgba(99,102,241,.4) 20%,rgba(99,102,241,.6) 50%,rgba(99,102,241,.4) 80%,transparent 100%);
+  animation:circuitPulse 3s ease-in-out infinite;
+  pointer-events:none;
+}
+.about-circuit::after{
+  content:'';position:absolute;
+  width:6px;height:6px;border-radius:50%;
+  background:rgba(99,102,241,.9);
+  left:-2px;top:50%;transform:translateY(-50%);
+  box-shadow:0 0 10px rgba(99,102,241,.8),0 0 20px rgba(99,102,241,.4);
+  animation:circuitDot 3s ease-in-out infinite;
+}
+@keyframes circuitPulse{
+  0%,100%{opacity:.4}
+  50%{opacity:1}
+}
+@keyframes circuitDot{
+  0%{top:10%}
+  100%{top:90%}
+}
+
+/* ABOUT: Data stream on right side */
+.about-data-stream{
+  position:absolute;right:0;top:0;bottom:0;width:1px;
+  background:linear-gradient(to bottom,transparent,rgba(99,102,241,.2),transparent);
+  overflow:hidden;
+  pointer-events:none;
+}
+.about-data-stream::after{
+  content:'';position:absolute;
+  width:1px;height:40%;
+  background:linear-gradient(to bottom,transparent,rgba(165,180,252,.8),transparent);
+  animation:dataStream 2.5s linear infinite;
+}
+@keyframes dataStream{
+  0%{top:-40%}
+  100%{top:140%}
+}
+
 </style>
 </head>
 <body>
@@ -581,14 +727,18 @@ footer{padding:44px 48px;border-top:1px solid var(--border);background:var(--bg)
   <div class="sec-eyebrow" style="max-width:1200px;margin:0 auto"><div class="eyebrow-rule"></div><span class="eyebrow-text">About Virorah</span></div>
   <div class="about-wrap">
     <div>
-      <p class="about-hl">Built because the gap between what professionals know and what the boardroom values was <strong>too expensive to leave unfilled.</strong></p>
+      <div class="about-hl-wrap">
+        <div class="about-hl-glow"></div>
+        <div class="about-circuit"></div>
+        <p class="about-hl">Built because the gap between what professionals know and what the boardroom values was <strong>too expensive to leave unfilled.</strong></p>
+      </div>
       <div class="qcard border-draw">
         <div class="q-name">Kumar Vivek</div>
         <div class="q-role">Founder, Virorah</div>
         <div class="q-text">"I spent years watching professionals with extraordinary expertise get ignored in budget conversations because they couldn't put a number on what they knew. That is a product problem. So I built the product."</div>
       </div>
     </div>
-    <div class="about-facts">
+    <div class="about-facts" style="position:relative"><div class="about-data-stream"></div>
       <div class="fact"><div class="fact-l">Founded</div><div class="fact-v">2026 — started as a single HR tool, grew into a platform philosophy powered by Humacity.</div></div>
       <div class="fact"><div class="fact-l">Headquarters</div><div class="fact-v">Gurugram, India. Building for Indian professionals first, global professionals next.</div></div>
       <div class="fact"><div class="fact-l">Philosophy</div><div class="fact-v">Every people decision has a financial dimension. Virorah builds the software that surfaces it.</div></div>
@@ -598,11 +748,17 @@ footer{padding:44px 48px;border-top:1px solid var(--border);background:var(--bg)
 </section>
 
 <section id="cta" style="position:relative">
-  <!-- Pulse rings -->
-  <div class="rings" id="cta-rings">
-    <div class="ring"></div><div class="ring"></div>
-    <div class="ring"></div><div class="ring"></div>
+  <!-- Large persistent breathing rings -->
+  <div class="cta-halo">
+    <div class="cta-halo-ring"></div>
+    <div class="cta-halo-ring"></div>
+    <div class="cta-halo-ring"></div>
   </div>
+  <!-- Periodic scan sweep -->
+  <div class="cta-sweep"></div>
+  <!-- HUD corner data tags -->
+  <div class="cta-hud" style="top:24px;left:32px">SYS.CTA.VIRORAH</div>
+  <div class="cta-hud" style="bottom:24px;right:32px;animation-delay:.8s">CONSUMER.LAYER.ACTIVE</div>
   <div class="cta-inner">
     <p class="cta-h1">Stop being underestimated.</p>
     <p class="cta-h2">Start speaking the language.</p>
