@@ -118,7 +118,7 @@ var ctaIO = new IntersectionObserver(function(entries){
         text.split(' ').forEach(function(word, i){
           var span = document.createElement('span');
           span.className='gw';
-          span.textContent = word + ' ';
+          span.textContent = word;
           el.appendChild(span);
           setTimeout(function(){ span.classList.add('on'); }, baseDelay + i*120);
         });
@@ -413,7 +413,7 @@ footer{padding:44px 48px;border-top:1px solid var(--border);background:var(--bg)
 
 /* Glitch word reveal (CTA) */
 @keyframes glitchWord{0%{opacity:0;transform:translateX(-6px);filter:blur(4px)}20%{opacity:.7;transform:translateX(4px);filter:blur(0)}50%{opacity:.5;transform:translateX(-2px)}80%{opacity:1;transform:translateX(1px)}100%{opacity:1;transform:translateX(0)}}
-.gw{display:inline-block;opacity:0}
+.gw{display:inline-block;opacity:0;margin-right:.3em}
 .gw.on{animation:glitchWord .55s ease-out forwards}
 
 /* CTA ring override (bigger) */
@@ -965,7 +965,7 @@ var ctaIO = new IntersectionObserver(function(entries){
         text.split(' ').forEach(function(word, i){
           var span = document.createElement('span');
           span.className='gw';
-          span.textContent = word + ' ';
+          span.textContent = word;
           el.appendChild(span);
           setTimeout(function(){ span.classList.add('on'); }, baseDelay + i*120);
         });
