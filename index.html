@@ -4,23 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Virorah Universe</title>
-<meta name="description" content="Every people decision has a financial dimension. Virorah builds the software that surfaces it.">
+<meta name="description" content="Every people decision has a financial dimension. Virorah builds the software that surfaces it — for the HR professional.">
 <link rel="canonical" href="https://virorah.com/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M4 8 L16 24 L28 8' stroke='%236366f1' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Space+Grotesk:wght@500;600;700&family=Bricolage+Grotesque:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-
 :root{
   --bg:#06051a;--bg2:#0d0b22;--bg3:#13112e;
   --ink:#6366f1;--violet:#7c3aed;
-  --white:#f4f3ff;--dim:rgba(244,243,255,.62);
-  --faint:rgba(244,243,255,.36);--border:rgba(99,102,241,.1);
+  --white:#f4f3ff;--dim:rgba(244,243,255,.62);--faint:rgba(244,243,255,.36);
+  --border:rgba(99,102,241,.1);
   --f:'Plus Jakarta Sans',sans-serif;--fd:'Cormorant Garamond',serif;
   --fs:'Space Grotesk',sans-serif;--fc:'Bricolage Grotesque',sans-serif;
   --fm:'JetBrains Mono',monospace;
@@ -29,13 +26,7 @@ html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--white);font-family:var(--f);overflow-x:hidden;line-height:1.65}
 
 /* NAV */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:900;height:68px;padding:0 48px;
-  display:flex;align-items:center;justify-content:space-between;
-  background:rgba(6,5,26,.8);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
-  border-bottom:1px solid var(--border);
-  transform:translateY(-100%);animation:navIn .7s .15s cubic-bezier(.22,1,.36,1) forwards;
-}
+nav{position:fixed;top:0;left:0;right:0;z-index:900;height:68px;padding:0 48px;display:flex;align-items:center;justify-content:space-between;background:rgba(6,5,26,.8);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--border);transform:translateY(-100%);animation:navIn .7s .15s cubic-bezier(.22,1,.36,1) forwards}
 @keyframes navIn{to{transform:translateY(0)}}
 .n-logo{display:flex;align-items:center;text-decoration:none;cursor:pointer}
 .n-logo img{height:36px;width:auto;display:block}
@@ -49,23 +40,24 @@ nav{
 #hero{position:relative;width:100%;height:100vh;min-height:680px;display:flex;align-items:center;justify-content:center;overflow:hidden}
 #globe{position:absolute;inset:0;width:100%;height:100%;z-index:1}
 
-.fl{position:absolute;z-index:3;font-family:var(--fm);font-size:11px;color:rgba(165,180,252,.48);letter-spacing:.09em;white-space:nowrap;pointer-events:none}
-.fl.a{color:rgba(196,181,253,.65)}
-.fl.b{color:rgba(165,180,252,.82);font-size:12px}
-.fl.c{color:rgba(165,180,252,.42)}
+/* Subtle ambient labels (static, at edges) */
+.fl{position:absolute;z-index:3;font-family:var(--fm);font-size:11px;color:rgba(165,180,252,.35);letter-spacing:.1em;white-space:nowrap;pointer-events:none}
 
 .hero-body{position:relative;z-index:10;text-align:center;max-width:760px;padding:0 24px}
-.hero-chip{display:inline-flex;align-items:center;gap:7px;padding:6px 18px;background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.18);border-radius:100px;font-family:var(--fm);font-size:10.5px;letter-spacing:.13em;color:var(--dim);margin-bottom:40px;opacity:0;animation:up .8s .9s cubic-bezier(.22,1,.36,1) forwards}
+.hero-chip{display:inline-flex;align-items:center;gap:7px;padding:6px 18px;background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.18);border-radius:100px;font-family:var(--fm);font-size:10.5px;letter-spacing:.12em;color:var(--dim);margin-bottom:36px;opacity:0;animation:up .8s .9s cubic-bezier(.22,1,.36,1) forwards}
 .cdot{width:5px;height:5px;border-radius:50%;background:var(--ink);animation:blink 2.4s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
-.hero-top{font-family:var(--fd);font-size:clamp(34px,4.8vw,62px);font-weight:400;font-style:italic;line-height:1.18;color:var(--white);margin-bottom:4px;opacity:0;animation:up .9s 1.05s cubic-bezier(.22,1,.36,1) forwards}
-.hero-bot{font-family:var(--fd);font-size:clamp(36px,5.2vw,66px);font-weight:600;line-height:1.12;background:linear-gradient(135deg,#f4f3ff 0%,#a5b4fc 55%,#c4b5fd 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:52px;opacity:0;animation:up .9s 1.15s cubic-bezier(.22,1,.36,1) forwards}
+.hero-top{font-family:var(--fd);font-size:clamp(32px,4.4vw,58px);font-weight:400;font-style:italic;line-height:1.18;color:var(--white);margin-bottom:4px;opacity:0;animation:up .9s 1.05s cubic-bezier(.22,1,.36,1) forwards}
+.hero-bot{font-family:var(--fd);font-size:clamp(34px,4.8vw,62px);font-weight:600;line-height:1.12;background:linear-gradient(135deg,#f4f3ff 0%,#a5b4fc 55%,#c4b5fd 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:44px;opacity:0;animation:up .9s 1.15s cubic-bezier(.22,1,.36,1) forwards}
 .hero-ctas{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;opacity:0;animation:up .8s 1.3s cubic-bezier(.22,1,.36,1) forwards}
-
 .btn-p{font-family:var(--fc);font-weight:700;font-size:14px;padding:14px 34px;background:linear-gradient(135deg,var(--ink),var(--violet));color:#fff;border:none;border-radius:10px;cursor:pointer;text-decoration:none;box-shadow:0 4px 28px rgba(99,102,241,.4);transition:box-shadow .3s,transform .2s}
 .btn-p:hover{box-shadow:0 8px 52px rgba(99,102,241,.65);transform:translateY(-2px)}
 .btn-g{font-family:var(--fc);font-weight:500;font-size:14px;padding:14px 28px;background:transparent;color:var(--dim);border:1px solid rgba(244,243,255,.12);border-radius:10px;cursor:pointer;text-decoration:none;transition:border-color .3s,color .3s}
 .btn-g:hover{border-color:rgba(244,243,255,.3);color:var(--white)}
+
+/* B2C note */
+.b2c-note{font-family:var(--fm);font-size:11px;letter-spacing:.08em;color:rgba(165,180,252,.45);margin-top:20px;opacity:0;animation:up .7s 1.55s cubic-bezier(.22,1,.36,1) forwards}
+
 .scroll-hint{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:10;opacity:0;animation:fadeIn 1s 2.2s forwards}
 .scroll-wire{width:1px;height:44px;background:linear-gradient(to bottom,transparent,rgba(99,102,241,.5));animation:breathe 2s infinite;margin:0 auto}
 @keyframes breathe{0%,100%{opacity:.5;transform:scaleY(1)}50%{opacity:1;transform:scaleY(1.2)}}
@@ -89,28 +81,19 @@ nav{
 .sec-title em{font-style:italic;color:#a5b4fc}
 .cards-row{display:grid;grid-template-columns:1fr 1fr;gap:24px}
 
-/* CARD BASE */
 .pc{border-radius:18px;padding:48px 44px;position:relative;overflow:hidden;opacity:0;transition:opacity .8s,transform .85s;cursor:pointer}
 .pc::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent 35%,rgba(255,255,255,.022) 50%,transparent 65%);transform:translateX(-100%);transition:transform .65s;pointer-events:none}
 .pc:hover::after{transform:translateX(100%)}
 
-/* PMS — WARM VIOLET */
 .pc-pms{background:linear-gradient(148deg,#090519 0%,#0f0926 45%,#070315 100%);border:1px solid rgba(139,92,246,.2);transform:translateX(-36px);animation:glowPms 3.5s ease-in-out infinite}
 .pc-pms.on{opacity:1;transform:translateX(0)}
 .pc-pms:hover{box-shadow:0 0 100px rgba(139,92,246,.2),0 24px 64px rgba(0,0,0,.6) !important}
-@keyframes glowPms{
-  0%,100%{box-shadow:0 0 0 1px rgba(139,92,246,.2),0 0 50px rgba(139,92,246,.07)}
-  50%{box-shadow:0 0 0 1px rgba(139,92,246,.38),0 0 100px rgba(139,92,246,.22),0 0 180px rgba(139,92,246,.07)}
-}
+@keyframes glowPms{0%,100%{box-shadow:0 0 0 1px rgba(139,92,246,.2),0 0 50px rgba(139,92,246,.07)}50%{box-shadow:0 0 0 1px rgba(139,92,246,.38),0 0 100px rgba(139,92,246,.22),0 0 180px rgba(139,92,246,.07)}}
 
-/* VANTAGE — COOL INDIGO */
 .pc-vantage{background:linear-gradient(148deg,#060419 0%,#0a0720 45%,#060317 100%);border:1px solid rgba(99,102,241,.2);transform:translateX(36px);animation:glowVantage 4s ease-in-out infinite .8s}
 .pc-vantage.on{opacity:1;transform:translateX(0)}
 .pc-vantage:hover{box-shadow:0 0 100px rgba(99,102,241,.2),0 24px 64px rgba(0,0,0,.6) !important}
-@keyframes glowVantage{
-  0%,100%{box-shadow:0 0 0 1px rgba(99,102,241,.2),0 0 50px rgba(99,102,241,.07)}
-  50%{box-shadow:0 0 0 1px rgba(99,102,241,.38),0 0 100px rgba(99,102,241,.22),0 0 180px rgba(99,102,241,.07)}
-}
+@keyframes glowVantage{0%,100%{box-shadow:0 0 0 1px rgba(99,102,241,.2),0 0 50px rgba(99,102,241,.07)}50%{box-shadow:0 0 0 1px rgba(99,102,241,.38),0 0 100px rgba(99,102,241,.22),0 0 180px rgba(99,102,241,.07)}}
 
 .accent{position:absolute;top:0;left:0;right:0;height:2px}
 .accent-v{background:linear-gradient(90deg,#8b5cf6,#a78bfa,#7c3aed)}
@@ -144,7 +127,7 @@ nav{
 .c-cta-i{background:rgba(99,102,241,.1);color:#a5b4fc;border:1px solid rgba(99,102,241,.25)}
 .c-cta-i:hover{background:rgba(99,102,241,.2);box-shadow:0 0 28px rgba(99,102,241,.25);transform:translateX(3px)}
 
-/* HUMAC SCORE */
+/* HUMAC */
 #humac{padding:120px 48px;background:linear-gradient(180deg,var(--bg2) 0%,var(--bg3) 50%,var(--bg2) 100%);border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow:hidden;position:relative}
 #humac::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:900px;height:900px;background:radial-gradient(ellipse,rgba(99,102,241,.06) 0%,transparent 65%);pointer-events:none}
 .humac-header{max-width:1200px;margin:0 auto 80px;text-align:center;position:relative;z-index:1}
@@ -243,9 +226,6 @@ footer{padding:44px 48px;border-top:1px solid var(--border);background:var(--bg)
 
 @keyframes up{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-@keyframes f1{0%,100%{transform:translate(0,0);opacity:.5}35%{transform:translate(5px,-7px);opacity:.82}68%{transform:translate(-4px,5px);opacity:.38}}
-@keyframes f2{0%,100%{transform:translate(0,0);opacity:.42}40%{transform:translate(-7px,-5px);opacity:.76}72%{transform:translate(5px,7px);opacity:.3}}
-@keyframes f3{0%,100%{transform:translate(0,0);opacity:.46}30%{transform:translate(6px,4px);opacity:.72}62%{transform:translate(-3px,-6px);opacity:.34}}
 
 @media(max-width:960px){
   nav{padding:0 24px}.n-links{display:none}
@@ -274,27 +254,27 @@ footer{padding:44px 48px;border-top:1px solid var(--border);background:var(--bg)
 
 <section id="hero">
   <canvas id="globe"></canvas>
-  <div class="fl b" style="top:21%;left:10%;animation:f1 6.2s ease-in-out infinite">MERIDIAN</div>
-  <div class="fl a" style="top:28%;right:13%;animation:f2 7.1s ease-in-out infinite">FORGE</div>
-  <div class="fl c" style="top:58%;left:8%;animation:f3 8.2s ease-in-out infinite">HUMACITY</div>
-  <div class="fl" style="top:64%;right:10%;animation:f1 6.6s ease-in-out infinite 1s">₹12L</div>
-  <div class="fl b" style="top:17%;right:22%;animation:f2 7.6s ease-in-out infinite .6s">ARIA</div>
-  <div class="fl a" style="top:77%;left:19%;animation:f3 6.1s ease-in-out infinite 1.8s">90-DAY</div>
-  <div class="fl c" style="top:39%;left:5%;animation:f2 8.1s ease-in-out infinite 1.1s">L3 · 30%</div>
-  <div class="fl" style="top:50%;right:6%;animation:f1 7.3s ease-in-out infinite 1.6s">L1 · 25%</div>
-  <div class="fl" style="top:74%;right:18%;animation:f3 6.7s ease-in-out infinite .4s">2.3x</div>
-  <div class="fl b" style="top:84%;left:33%;animation:f1 7.1s ease-in-out infinite .9s">9-BOX</div>
-  <div class="fl a" style="top:11%;left:28%;animation:f2 8.6s ease-in-out infinite 1.3s">TALENT GALAXY</div>
-  <div class="fl c" style="top:44%;right:24%;animation:f3 7.4s ease-in-out infinite .7s">TQP</div>
-  <div class="fl" style="top:30%;left:20%;animation:f1 6.8s ease-in-out infinite 2s">₹35L</div>
+
+  <!-- Subtle ambient labels — broad HR language, at edges -->
+  <div class="fl" style="top:22%;left:8%">FLIGHT RISK</div>
+  <div class="fl" style="top:35%;right:7%">SUCCESSION</div>
+  <div class="fl" style="top:62%;left:7%">CALIBRATION</div>
+  <div class="fl" style="top:70%;right:9%">ATTRITION</div>
+  <div class="fl" style="top:14%;right:18%">BUDGET CYCLE</div>
+  <div class="fl" style="top:80%;left:25%">PERFORMANCE CULTURE</div>
+
   <div class="hero-body">
-    <div class="hero-chip"><span class="cdot"></span>THE VIRORAH UNIVERSE &nbsp;·&nbsp; TWO PRODUCTS &nbsp;·&nbsp; ONE PHILOSOPHY</div>
+    <div class="hero-chip">
+      <span class="cdot"></span>
+      FOR THE HR PROFESSIONAL &nbsp;·&nbsp; NOT YOUR COMPANY. YOURS.
+    </div>
     <p class="hero-top">Every people decision has a financial dimension.</p>
     <h1 class="hero-bot">We built the software that surfaces it.</h1>
     <div class="hero-ctas">
       <a href="#products" class="btn-p">Explore our products</a>
       <a href="https://humacity.com" target="_blank" class="btn-g">Read the philosophy →</a>
     </div>
+    <p class="b2c-note">Consumer products for HR professionals — bought by you, not your company.</p>
   </div>
   <div class="scroll-hint"><div class="scroll-wire"></div></div>
 </section>
@@ -361,46 +341,11 @@ footer{padding:44px 48px;border-top:1px solid var(--border);background:var(--bg)
     <p class="humac-desc">The Humac Score makes your organisation's human capital visible across five pillars, each weighted to reflect its true impact on value.</p>
   </div>
   <div class="arc-row">
-    <div class="arc-item">
-      <div class="arc-wrap">
-        <svg class="arc-svg" viewBox="0 0 120 120"><defs><filter id="g1"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><circle class="arc-track" cx="60" cy="60" r="52"/><circle class="arc-fill l1" cx="60" cy="60" r="52" style="stroke-dasharray:327;stroke-dashoffset:327" data-offset="245" filter="url(#g1)"/></svg>
-        <div class="arc-center"><span class="arc-pct-num" data-arc-t="25">0</span><span class="arc-pct-sym">%</span></div>
-      </div>
-      <div class="arc-l">L1</div><div class="arc-name">Value Ledger</div>
-      <div class="arc-desc">Every HR decision has a financial entry.</div>
-    </div>
-    <div class="arc-item">
-      <div class="arc-wrap">
-        <svg class="arc-svg" viewBox="0 0 120 120"><defs><filter id="g2"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><circle class="arc-track" cx="60" cy="60" r="52"/><circle class="arc-fill l2" cx="60" cy="60" r="52" style="stroke-dasharray:327;stroke-dashoffset:327" data-offset="278" filter="url(#g2)"/></svg>
-        <div class="arc-center"><span class="arc-pct-num" data-arc-t="15">0</span><span class="arc-pct-sym">%</span></div>
-      </div>
-      <div class="arc-l">L2</div><div class="arc-name">Talent Premium</div>
-      <div class="arc-desc">Financial value of better-than-average people.</div>
-    </div>
-    <div class="arc-item">
-      <div class="arc-wrap">
-        <svg class="arc-svg" viewBox="0 0 120 120"><defs><filter id="g3"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><circle class="arc-track" cx="60" cy="60" r="52"/><circle class="arc-fill l3" cx="60" cy="60" r="52" style="stroke-dasharray:327;stroke-dashoffset:327" data-offset="229" filter="url(#g3)"/></svg>
-        <div class="arc-center"><span class="arc-pct-num" data-arc-t="30">0</span><span class="arc-pct-sym">%</span></div>
-      </div>
-      <div class="arc-l">L3 · Highest Weight</div><div class="arc-name">Org Vitals</div>
-      <div class="arc-desc">Pulse, metabolism, vitality of your ecosystem.</div>
-    </div>
-    <div class="arc-item">
-      <div class="arc-wrap">
-        <svg class="arc-svg" viewBox="0 0 120 120"><defs><filter id="g4"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><circle class="arc-track" cx="60" cy="60" r="52"/><circle class="arc-fill l4" cx="60" cy="60" r="52" style="stroke-dasharray:327;stroke-dashoffset:327" data-offset="262" filter="url(#g4)"/></svg>
-        <div class="arc-center"><span class="arc-pct-num" data-arc-t="20">0</span><span class="arc-pct-sym">%</span></div>
-      </div>
-      <div class="arc-l">L4</div><div class="arc-name">Human P&amp;L</div>
-      <div class="arc-desc">Revenue from talent, cost from people failures.</div>
-    </div>
-    <div class="arc-item">
-      <div class="arc-wrap">
-        <svg class="arc-svg" viewBox="0 0 120 120"><defs><filter id="g5"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><circle class="arc-track" cx="60" cy="60" r="52"/><circle class="arc-fill l5" cx="60" cy="60" r="52" style="stroke-dasharray:327;stroke-dashoffset:327" data-offset="294" filter="url(#g5)"/></svg>
-        <div class="arc-center"><span class="arc-pct-num" data-arc-t="10">0</span><span class="arc-pct-sym">%</span></div>
-      </div>
-      <div class="arc-l">L5</div><div class="arc-name">Human Balance Sheet</div>
-      <div class="arc-desc">Human assets, liabilities. Net Human Worth.</div>
-    </div>
+    <div class="arc-item"><div class="arc-wrap"><svg class="arc-svg" viewBox="0 0 120 120"><defs><filter id="g1"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><circle class="arc-track" cx="60" cy="60" r="52"/><circle class="arc-fill l1" cx="60" cy="60" r="52" style="stroke-dasharray:327;stroke-dashoffset:327" data-offset="245" filter="url(#g1)"/></svg><div class="arc-center"><span class="arc-pct-num" data-arc-t="25">0</span><span class="arc-pct-sym">%</span></div></div><div class="arc-l">L1</div><div class="arc-name">Value Ledger</div><div class="arc-desc">Every HR decision has a financial entry.</div></div>
+    <div class="arc-item"><div class="arc-wrap"><svg class="arc-svg" viewBox="0 0 120 120"><defs><filter id="g2"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><circle class="arc-track" cx="60" cy="60" r="52"/><circle class="arc-fill l2" cx="60" cy="60" r="52" style="stroke-dasharray:327;stroke-dashoffset:327" data-offset="278" filter="url(#g2)"/></svg><div class="arc-center"><span class="arc-pct-num" data-arc-t="15">0</span><span class="arc-pct-sym">%</span></div></div><div class="arc-l">L2</div><div class="arc-name">Talent Premium</div><div class="arc-desc">Financial value of better-than-average people.</div></div>
+    <div class="arc-item"><div class="arc-wrap"><svg class="arc-svg" viewBox="0 0 120 120"><defs><filter id="g3"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><circle class="arc-track" cx="60" cy="60" r="52"/><circle class="arc-fill l3" cx="60" cy="60" r="52" style="stroke-dasharray:327;stroke-dashoffset:327" data-offset="229" filter="url(#g3)"/></svg><div class="arc-center"><span class="arc-pct-num" data-arc-t="30">0</span><span class="arc-pct-sym">%</span></div></div><div class="arc-l">L3 · Highest Weight</div><div class="arc-name">Org Vitals</div><div class="arc-desc">Pulse, metabolism, vitality of your ecosystem.</div></div>
+    <div class="arc-item"><div class="arc-wrap"><svg class="arc-svg" viewBox="0 0 120 120"><defs><filter id="g4"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><circle class="arc-track" cx="60" cy="60" r="52"/><circle class="arc-fill l4" cx="60" cy="60" r="52" style="stroke-dasharray:327;stroke-dashoffset:327" data-offset="262" filter="url(#g4)"/></svg><div class="arc-center"><span class="arc-pct-num" data-arc-t="20">0</span><span class="arc-pct-sym">%</span></div></div><div class="arc-l">L4</div><div class="arc-name">Human P&amp;L</div><div class="arc-desc">Revenue from talent, cost from people failures.</div></div>
+    <div class="arc-item"><div class="arc-wrap"><svg class="arc-svg" viewBox="0 0 120 120"><defs><filter id="g5"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><circle class="arc-track" cx="60" cy="60" r="52"/><circle class="arc-fill l5" cx="60" cy="60" r="52" style="stroke-dasharray:327;stroke-dashoffset:327" data-offset="294" filter="url(#g5)"/></svg><div class="arc-center"><span class="arc-pct-num" data-arc-t="10">0</span><span class="arc-pct-sym">%</span></div></div><div class="arc-l">L5</div><div class="arc-name">Human Balance Sheet</div><div class="arc-desc">Human assets, liabilities. Net Human Worth.</div></div>
   </div>
   <div class="humac-footer">
     <p class="humac-tagline">Human capital has always had a number. Now you can see it.</p>
@@ -477,58 +422,50 @@ footer{padding:44px 48px;border-top:1px solid var(--border);background:var(--bg)
 </footer>
 
 <script>
-// ── GLOBE: Humacity architecture ──────────────────────────────
 (function(){
-  var canvas=document.getElementById('globe');
-  var scene=new THREE.Scene();
-  var camera=new THREE.PerspectiveCamera(55,canvas.clientWidth/canvas.clientHeight,0.1,100);
-  camera.position.set(0,0,3.2);
-  var renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true,alpha:true});
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
-  renderer.setClearColor(0x000000,0);
+  var canvas = document.getElementById('globe');
+  var scene = new THREE.Scene();
+  var camera = new THREE.PerspectiveCamera(60, canvas.clientWidth/canvas.clientHeight, 0.1, 60);
+  camera.position.set(0, 0, 2.2);
+  var renderer = new THREE.WebGLRenderer({canvas:canvas, antialias:true, alpha:true});
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setClearColor(0x000000, 0);
 
   function resize(){
-    var w=canvas.clientWidth,h=canvas.clientHeight;
+    var w=canvas.clientWidth, h=canvas.clientHeight;
     renderer.setSize(w,h,false);
-    camera.aspect=w/h;camera.updateProjectionMatrix();
+    camera.aspect=w/h; camera.updateProjectionMatrix();
   }
-  resize();window.addEventListener('resize',resize);
+  resize(); window.addEventListener('resize', resize);
 
-  // Core metallic sphere
-  var core=new THREE.Mesh(
-    new THREE.SphereGeometry(.9,80,80),
-    new THREE.MeshStandardMaterial({color:0x0d0b1e,roughness:.18,metalness:.92,emissive:0x1e1b4b,emissiveIntensity:.55})
+  // ── GLOBE (Humacity architecture) ──
+  var core = new THREE.Mesh(
+    new THREE.SphereGeometry(1.0, 80, 80),
+    new THREE.MeshStandardMaterial({color:0x0d0b1e, roughness:.18, metalness:.92, emissive:0x1e1b4b, emissiveIntensity:.55})
   );
   scene.add(core);
 
-  // Outer glow shell
   scene.add(new THREE.Mesh(
-    new THREE.SphereGeometry(.96,32,32),
-    new THREE.MeshBasicMaterial({color:0x6366f1,transparent:true,opacity:.055,side:THREE.BackSide})
+    new THREE.SphereGeometry(1.05, 32, 32),
+    new THREE.MeshBasicMaterial({color:0x6366f1, transparent:true, opacity:.05, side:THREE.BackSide})
   ));
 
-  // Wireframe overlay
-  var wire=new THREE.Mesh(
-    new THREE.SphereGeometry(.92,24,24),
-    new THREE.MeshBasicMaterial({color:0x7c3aed,wireframe:true,transparent:true,opacity:.09})
+  var wire = new THREE.Mesh(
+    new THREE.SphereGeometry(1.03, 24, 24),
+    new THREE.MeshBasicMaterial({color:0x7c3aed, wireframe:true, transparent:true, opacity:.08})
   );
   scene.add(wire);
 
-  // Torus rings (like Humacity)
-  function ring(r,tube,color,opacity,rx,ry,rz){
-    var m=new THREE.Mesh(
-      new THREE.TorusGeometry(r,tube,8,160),
-      new THREE.MeshBasicMaterial({color:color,transparent:true,opacity:opacity})
-    );
-    m.rotation.set(rx,ry,rz);scene.add(m);return m;
+  function mkRing(r,tube,color,opacity,rx,ry,rz){
+    var m=new THREE.Mesh(new THREE.TorusGeometry(r,tube,8,160), new THREE.MeshBasicMaterial({color:color,transparent:true,opacity:opacity}));
+    m.rotation.set(rx,ry,rz); scene.add(m); return m;
   }
-  var r1=ring(1.24,.005,0x6366f1,.55,Math.PI*.28,0,0);
-  var r2=ring(1.42,.003,0xa5b4fc,.28,Math.PI*.5,0,Math.PI*.2);
-  var r3=ring(1.6,.002,0x7c3aed,.18,Math.PI*.15,Math.PI*.1,0);
-  var r4=ring(1.04,.004,0xa5b4fc,.3,Math.PI*.7,0,Math.PI*.4);
+  var r1=mkRing(1.38,.005,0x6366f1,.55,Math.PI*.28,0,0);
+  var r2=mkRing(1.58,.003,0xa5b4fc,.28,Math.PI*.5,0,Math.PI*.2);
+  var r3=mkRing(1.78,.002,0x7c3aed,.18,Math.PI*.15,Math.PI*.1,0);
+  var r4=mkRing(1.16,.004,0xa5b4fc,.3,Math.PI*.7,0,Math.PI*.4);
 
-  // Particle clouds (like Humacity)
-  function cloud(count,minR,maxR,color,sz){
+  function mkCloud(count,minR,maxR,color,sz){
     var pos=new Float32Array(count*3);
     for(var i=0;i<count;i++){
       var phi=Math.acos(-1+(2*i)/count);
@@ -541,101 +478,166 @@ footer{padding:44px 48px;border-top:1px solid var(--border);background:var(--bg)
     var geo=new THREE.BufferGeometry();
     geo.setAttribute('position',new THREE.BufferAttribute(pos,3));
     var pts=new THREE.Points(geo,new THREE.PointsMaterial({color:color,size:sz,transparent:true,opacity:.7,sizeAttenuation:true}));
-    scene.add(pts);return pts;
+    scene.add(pts); return pts;
   }
-  var c1=cloud(600,1.1,1.9,0x7c3aed,.022);
-  var c2=cloud(200,.92,1.05,0xa5b4fc,.035);
-  var c3=cloud(80,2.0,2.8,0x6366f1,.015);
+  var c1=mkCloud(600,1.15,2.1,0x7c3aed,.022);
+  var c2=mkCloud(200,1.02,1.15,0xa5b4fc,.035);
+  var c3=mkCloud(80,2.2,3.2,0x6366f1,.015);
 
-  // Dramatic lighting (Humacity approach)
   scene.add(new THREE.AmbientLight(0x050410,4));
-  var lM=new THREE.PointLight(0x6366f1,4,10);lM.position.set(2.5,2,2);scene.add(lM);
-  var lG=new THREE.PointLight(0xa5b4fc,2,10);lG.position.set(-2,-1.5,1.5);scene.add(lG);
-  var lB=new THREE.PointLight(0x4f46e5,1.5,8);lB.position.set(0,-2.5,-1);scene.add(lB);
-  var lF=new THREE.PointLight(0xc4b5fd,1.2,6);lF.position.set(-1.5,1.5,2);scene.add(lF);
+  var lM=new THREE.PointLight(0x6366f1,4,12); lM.position.set(2.5,2,2); scene.add(lM);
+  var lG=new THREE.PointLight(0xa5b4fc,2,12); lG.position.set(-2,-1.5,1.5); scene.add(lG);
+  var lB=new THREE.PointLight(0x4f46e5,1.5,10); lB.position.set(0,-2.5,-1); scene.add(lB);
+  var lF=new THREE.PointLight(0xc4b5fd,1.2,8); lF.position.set(-1.5,1.5,2); scene.add(lF);
 
-  var mouseX=0,mouseY=0;
+  // ── STARFIELD: HR words flying toward camera ──
+  var WORDS = [
+    // Universal HR professional reality
+    'ATTRITION','FLIGHT RISK','APPRAISAL SEASON','CALIBRATION',
+    'PIP','SUCCESSION','BELL CURVE','HEADCOUNT','SALARY BAND',
+    'BUDGET CYCLE','PERFORMANCE CULTURE','TALENT GAP','BOARDROOM',
+    'LEGAL EXPOSURE','LABOUR LAW','POLICY BREACH','GRIEVANCE',
+    'TERMINATION','RETRENCHMENT','RETENTION','ONBOARDING',
+    '360 REVIEW','OKR','TEAM HEALTH','HIGH PERFORMER',
+    // PMS
+    'FORGE','90-DAY PLAYBOOK','9-BOX','TALENT GALAXY','CALIBRATION',
+    // Vantage
+    'MERIDIAN','ARIA','PACT','SIGNAL',
+    // Financial
+    'Rs.35L','Rs.12L','2.3x','4.1x','+18%','VALUE LEDGER',
+    // Humacity
+    'L1','L2','L3','L4','L5','HUMAC SCORE','NET HUMAN WORTH','HUMAN P&L',
+  ];
+
+  var COLORS_TEXT = ['rgba(165,180,252,0.75)','rgba(196,181,253,0.65)','rgba(165,180,252,0.5)','rgba(244,243,255,0.55)','rgba(139,92,246,0.7)'];
+
+  function makeWordTexture(text){
+    var c=document.createElement('canvas');
+    var ctx=c.getContext('2d');
+    var sz = text.length > 14 ? 11 : text.length > 8 ? 13 : 15;
+    ctx.font = '500 '+sz+'px monospace';
+    var tw=ctx.measureText(text).width;
+    c.width=Math.ceil(tw)+20; c.height=sz+16;
+    ctx.font='500 '+sz+'px monospace';
+    ctx.fillStyle = COLORS_TEXT[Math.floor(Math.random()*COLORS_TEXT.length)];
+    ctx.fillText(text, 10, sz+4);
+    var tex=new THREE.CanvasTexture(c);
+    tex.needsUpdate=true;
+    return {tex:tex, aspect:c.width/c.height};
+  }
+
+  // Pre-build textures
+  var texPool = WORDS.map(function(w){ return makeWordTexture(w); });
+
+  var SPRITE_N = 100;
+  var sprites = [];
+
+  function resetSprite(d, full){
+    var ti = Math.floor(Math.random()*texPool.length);
+    var tc = texPool[ti];
+    if(d.sprite.material.map !== tc.tex){
+      d.sprite.material.map = tc.tex;
+      d.sprite.material.needsUpdate = true;
+    }
+    var sc = 0.25 + Math.random()*0.35;
+    d.sprite.scale.set(sc*tc.aspect*7, sc*7, 1);
+    // Spread to cover full viewport
+    d.sprite.position.x = (Math.random()-0.5)*10;
+    d.sprite.position.y = (Math.random()-0.5)*6;
+    d.sprite.position.z = full ? -15+Math.random()*12 : -16+Math.random()*2;
+    d.speed = 0.035 + Math.random()*0.055;
+    d.sprite.material.opacity = 0;
+    d.sprite.material.needsUpdate = true;
+  }
+
+  for(var i=0;i<SPRITE_N;i++){
+    var mat=new THREE.SpriteMaterial({transparent:true,opacity:0,depthWrite:false,blending:THREE.AdditiveBlending});
+    var sp=new THREE.Sprite(mat);
+    scene.add(sp);
+    var d={sprite:sp,speed:0};
+    resetSprite(d, true);
+    sprites.push(d);
+  }
+
+  // ── MOUSE: globe rotates gently, mouse = soft nudge ──
+  var mouseX=0, mouseY=0;
+  var cursorActive=false, cursorTimer=null;
   document.addEventListener('mousemove',function(e){
-    mouseX=(e.clientX/window.innerWidth-.5)*1.2;
-    mouseY=(e.clientY/window.innerHeight-.5)*1.2;
+    mouseX=(e.clientX/window.innerWidth-.5);
+    mouseY=(e.clientY/window.innerHeight-.5);
+    cursorActive=true;
+    clearTimeout(cursorTimer);
+    cursorTimer=setTimeout(function(){cursorActive=false;},2000);
   });
 
+  var autoY=0, rotY=0, rotX=0;
   var t=0;
   (function animate(){
-    requestAnimationFrame(animate);t+=.004;
-    core.rotation.y=t*.25;core.rotation.x=Math.sin(t*.15)*.08;
-    wire.rotation.y=t*.4;wire.rotation.x=-t*.15;
+    requestAnimationFrame(animate);
+    t+=.004;
+
+    // Globe: always auto-rotate, cursor gently nudges
+    autoY += 0.0006;
+    var targetY = autoY + (cursorActive ? mouseX*0.18 : 0);
+    var targetX = cursorActive ? mouseY*0.08 : 0;
+    rotY += (targetY - rotY) * 0.018;
+    rotX += (targetX - rotX) * 0.018;
+    scene.rotation.y = rotY;
+    scene.rotation.x = rotX;
+
+    // Globe breathing
+    core.rotation.y=t*.25; core.rotation.x=Math.sin(t*.15)*.08;
+    wire.rotation.y=t*.4; wire.rotation.x=-t*.15;
     r1.rotation.z=t*.35;
-    r2.rotation.y=t*.28;r2.rotation.x+=.002;
-    r3.rotation.z=-t*.2;r3.rotation.y=t*.15;
-    r4.rotation.x=t*.3;r4.rotation.z=-t*.18;
-    c1.rotation.y=t*.12;c1.rotation.x=Math.sin(t*.08)*.04;
-    c2.rotation.y=-t*.18;c2.rotation.z=t*.06;
+    r2.rotation.y=t*.28; r2.rotation.x+=.002;
+    r3.rotation.z=-t*.2; r3.rotation.y=t*.15;
+    r4.rotation.x=t*.3; r4.rotation.z=-t*.18;
+    c1.rotation.y=t*.12; c1.rotation.x=Math.sin(t*.08)*.04;
+    c2.rotation.y=-t*.18; c2.rotation.z=t*.06;
     c3.rotation.y=t*.06;
     var breath=1+Math.sin(t*.7)*.018;
-    core.scale.setScalar(breath);wire.scale.setScalar(breath*1.01);
-    scene.rotation.x+=(mouseY*.6-scene.rotation.x)*.03;
-    scene.rotation.y+=(mouseX*.6-scene.rotation.y)*.03;
+    core.scale.setScalar(breath); wire.scale.setScalar(breath*1.01);
     lM.intensity=3.5+Math.sin(t*1.1)*.8;
     lG.intensity=1.8+Math.cos(t*.9)*.5;
-    renderer.render(scene,camera);
+
+    // Starfield: words fly toward camera
+    for(var i=0;i<sprites.length;i++){
+      var d=sprites[i];
+      d.sprite.position.z += d.speed;
+      // Fade in as approaching
+      var z=d.sprite.position.z;
+      var prog=(z+16)/18; // 0 far, 1 close to camera
+      if(prog < 0.65){
+        d.sprite.material.opacity = Math.min(0.82, prog*2.2);
+      }
+      // Fade out as passing camera
+      if(z > 1.8){
+        d.sprite.material.opacity *= 0.88;
+      }
+      if(z > 3.0){
+        resetSprite(d, false);
+      }
+      d.sprite.material.needsUpdate = true;
+    }
+
+    renderer.render(scene, camera);
   })();
 })();
 
 // ── SCROLL REVEALS ──
-var io=new IntersectionObserver(function(entries){
-  entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('on')});
-},{threshold:.14,rootMargin:'0px 0px -44px 0px'});
+var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)x.target.classList.add('on')})},{threshold:.14,rootMargin:'0px 0px -44px 0px'});
 document.querySelectorAll('.stat,.sec-eyebrow,.sec-title,.pc,.phil-q,.phil-body,.about-hl,.qcard,.about-facts,.cta-h1,.cta-h2,.cta-btns,.humac-sub,.humac-title,.humac-desc,.humac-tagline,.humac-link').forEach(function(el){io.observe(el)});
 
-// ── ARC ANIMATION ──
-var arcIO=new IntersectionObserver(function(entries){
-  entries.forEach(function(entry){
-    if(entry.isIntersecting){
-      document.querySelectorAll('.arc-item').forEach(function(item,i){
-        setTimeout(function(){
-          item.classList.add('on');
-          var fill=item.querySelector('.arc-fill');
-          var counter=item.querySelector('.arc-pct-num');
-          var target=parseInt(counter.dataset.arcT);
-          fill.style.strokeDashoffset=fill.dataset.offset;
-          var s=null;
-          (function step(ts){
-            if(!s)s=ts;
-            var p=Math.min((ts-s)/1600,1),e=1-Math.pow(1-p,3);
-            counter.textContent=Math.round(e*target);
-            if(p<1)requestAnimationFrame(step);else counter.textContent=target;
-          })(performance.now());
-        },i*140);
-      });
-      arcIO.disconnect();
-    }
-  });
-},{threshold:.2});
+// ── ARC ──
+var arcIO=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){document.querySelectorAll('.arc-item').forEach(function(item,i){setTimeout(function(){item.classList.add('on');var fill=item.querySelector('.arc-fill');var counter=item.querySelector('.arc-pct-num');var target=parseInt(counter.dataset.arcT);fill.style.strokeDashoffset=fill.dataset.offset;var s=null;(function step(ts){if(!s)s=ts;var p=Math.min((ts-s)/1600,1),e=1-Math.pow(1-p,3);counter.textContent=Math.round(e*target);if(p<1)requestAnimationFrame(step);else counter.textContent=target;})(performance.now());},i*140)});arcIO.disconnect()}})},{threshold:.2});
 var hs=document.querySelector('#humac');if(hs)arcIO.observe(hs);
 
 // ── STAT COUNTER ──
-var sIO=new IntersectionObserver(function(entries){
-  entries.forEach(function(e){
-    if(e.isIntersecting){
-      var n=e.target.querySelector('.stat-n');
-      var target=parseInt(n.dataset.t),s=null;
-      (function step(ts){if(!s)s=ts;var p=Math.min((ts-s)/1700,1),ev=1-Math.pow(1-p,3);n.textContent=Math.round(ev*target);if(p<1)requestAnimationFrame(step);else n.textContent=target;})(performance.now());
-      sIO.unobserve(e.target);
-    }
-  });
-},{threshold:.5});
+var sIO=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){var n=x.target.querySelector('.stat-n'),tgt=parseInt(n.dataset.t),s=null;(function step(ts){if(!s)s=ts;var p=Math.min((ts-s)/1700,1),ev=1-Math.pow(1-p,3);n.textContent=Math.round(ev*tgt);if(p<1)requestAnimationFrame(step);else n.textContent=tgt;})(performance.now());sIO.unobserve(x.target)}})},{threshold:.5});
 document.querySelectorAll('.stat').forEach(function(el){sIO.observe(el)});
 
 // ── MANIFESTO ──
-var mIO=new IntersectionObserver(function(entries){
-  entries.forEach(function(e){
-    if(e.isIntersecting){
-      e.target.querySelectorAll('.ml,.mf').forEach(function(l,i){setTimeout(function(){l.classList.add('on')},i*185)});
-      mIO.unobserve(e.target);
-    }
-  });
-},{threshold:.16});
+var mIO=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.querySelectorAll('.ml,.mf').forEach(function(l,i){setTimeout(function(){l.classList.add('on')},i*185)});mIO.unobserve(x.target)}})},{threshold:.16});
 var ms=document.querySelector('#manifesto');if(ms)mIO.observe(ms);
 </script>
 </body>
