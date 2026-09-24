@@ -84,50 +84,40 @@ var aboutIO = new IntersectionObserver(function(entries){
   entries.forEach(function(e){
     if(e.isIntersecting){
       var sec = e.target;
+      // Reveal about-hl immediately, then scramble
       var hl = sec.querySelector('.about-hl');
-      if(hl){ hl.style.opacity='1'; hl.style.transform='translateX(0)'; scramble(hl, 1400); }
+      if(hl){
+        hl.style.transition = 'none';
+        hl.style.opacity = '1';
+        hl.style.transform = 'translateX(0)';
+        setTimeout(function(){ scramble(hl, 1800); }, 100);
+      }
+      // Reveal about-facts
+      var af = sec.querySelector('.about-facts');
+      if(af){ af.style.transition='none'; af.style.opacity='1'; af.style.transform='translateX(0)'; }
+      // Border draw on qcard
       setTimeout(function(){
         var qc = sec.querySelector('.qcard');
         if(qc){ qc.classList.add('on'); }
-      }, 400);
+      }, 300);
+      // Data labels stagger
       var facts = sec.querySelectorAll('.fact-l');
       facts.forEach(function(f,i){
-        setTimeout(function(){ f.classList.add('on'); }, 600+i*200);
+        setTimeout(function(){ f.classList.add('on'); }, 500+i*220);
       });
-      var af = sec.querySelector('.about-facts');
-      if(af){ af.style.opacity='1'; af.style.transform='translateX(0)'; }
       aboutIO.unobserve(sec);
     }
   });
-},{threshold:.2});
+},{threshold:.15});
 var aboutSec = document.querySelector('#about');
 if(aboutSec) aboutIO.observe(aboutSec);
 
-// CTA: pulse rings + glitch word reveals
+// CTA: pulse rings only
 var ctaIO = new IntersectionObserver(function(entries){
   entries.forEach(function(e){
     if(e.isIntersecting){
-      // Pulse rings
       var rings = document.getElementById('cta-rings');
       if(rings) setTimeout(function(){ rings.classList.add('on'); }, 200);
-      // Build glitch headlines
-      function buildGlitch(id, text, baseDelay){
-        var el = document.getElementById(id);
-        if(!el) return;
-        el.innerHTML = '';
-        text.split(' ').forEach(function(word, i){
-          var span = document.createElement('span');
-          span.className='gw';
-          span.textContent = word;
-          el.appendChild(span);
-          setTimeout(function(){ span.classList.add('on'); }, baseDelay + i*120);
-        });
-      }
-      buildGlitch('cta-h1', 'Stop being underestimated.', 300);
-      buildGlitch('cta-h2', 'Start speaking the language.', 700);
-      // CTA buttons
-      var btns = document.querySelector('.cta-btns');
-      if(btns) setTimeout(function(){ btns.classList.add('on'); }, 1200);
       ctaIO.unobserve(e.target);
     }
   });
@@ -614,8 +604,8 @@ footer{padding:44px 48px;border-top:1px solid var(--border);background:var(--bg)
     <div class="ring"></div><div class="ring"></div>
   </div>
   <div class="cta-inner">
-    <p class="cta-h1" id="cta-h1"></p>
-    <p class="cta-h2" id="cta-h2"></p>
+    <p class="cta-h1">Stop being underestimated.</p>
+    <p class="cta-h2">Start speaking the language.</p>
     <div class="cta-btns">
       <a href="#products" class="btn-p">Explore all products</a>
       <a href="https://humacity.com" target="_blank" class="btn-g">Read Humacity →</a>
@@ -844,7 +834,7 @@ footer{padding:44px 48px;border-top:1px solid var(--border);background:var(--bg)
 
 // ── SCROLL REVEALS ──
 var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)x.target.classList.add('on')})},{threshold:.14,rootMargin:'0px 0px -44px 0px'});
-document.querySelectorAll('.stat,.sec-eyebrow,.sec-title,.pc,.phil-q,.phil-body,.about-hl,.qcard,.about-facts,.cta-h1,.cta-h2,.cta-btns,.humac-sub,.humac-title,.humac-desc,.humac-tagline,.humac-link').forEach(function(el){io.observe(el)});
+document.querySelectorAll('.stat,.sec-eyebrow,.sec-title,.pc,.phil-q,.phil-body,.cta-h1,.cta-h2,.cta-btns,.humac-sub,.humac-title,.humac-desc,.humac-tagline,.humac-link').forEach(function(el){io.observe(el)});
 
 // ── ARC ──
 var arcIO=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){document.querySelectorAll('.arc-item').forEach(function(item,i){setTimeout(function(){item.classList.add('on');var fill=item.querySelector('.arc-fill');var counter=item.querySelector('.arc-pct-num');var target=parseInt(counter.dataset.arcT);fill.style.strokeDashoffset=fill.dataset.offset;var s=null;(function step(ts){if(!s)s=ts;var p=Math.min((ts-s)/1600,1),e=1-Math.pow(1-p,3);counter.textContent=Math.round(e*target);if(p<1)requestAnimationFrame(step);else counter.textContent=target;})(performance.now());},i*140)});arcIO.disconnect()}})},{threshold:.2});
@@ -931,56 +921,34 @@ var aboutIO = new IntersectionObserver(function(entries){
   entries.forEach(function(e){
     if(e.isIntersecting){
       var sec = e.target;
+      // Reveal about-hl immediately, then scramble
       var hl = sec.querySelector('.about-hl');
-      if(hl){ hl.style.opacity='1'; hl.style.transform='translateX(0)'; scramble(hl, 1400); }
+      if(hl){
+        hl.style.transition = 'none';
+        hl.style.opacity = '1';
+        hl.style.transform = 'translateX(0)';
+        setTimeout(function(){ scramble(hl, 1800); }, 100);
+      }
+      // Reveal about-facts
+      var af = sec.querySelector('.about-facts');
+      if(af){ af.style.transition='none'; af.style.opacity='1'; af.style.transform='translateX(0)'; }
+      // Border draw on qcard
       setTimeout(function(){
         var qc = sec.querySelector('.qcard');
         if(qc){ qc.classList.add('on'); }
-      }, 400);
+      }, 300);
+      // Data labels stagger
       var facts = sec.querySelectorAll('.fact-l');
       facts.forEach(function(f,i){
-        setTimeout(function(){ f.classList.add('on'); }, 600+i*200);
+        setTimeout(function(){ f.classList.add('on'); }, 500+i*220);
       });
-      var af = sec.querySelector('.about-facts');
-      if(af){ af.style.opacity='1'; af.style.transform='translateX(0)'; }
       aboutIO.unobserve(sec);
     }
   });
-},{threshold:.2});
+},{threshold:.15});
 var aboutSec = document.querySelector('#about');
 if(aboutSec) aboutIO.observe(aboutSec);
 
-// CTA: pulse rings + glitch word reveals
-var ctaIO = new IntersectionObserver(function(entries){
-  entries.forEach(function(e){
-    if(e.isIntersecting){
-      // Pulse rings
-      var rings = document.getElementById('cta-rings');
-      if(rings) setTimeout(function(){ rings.classList.add('on'); }, 200);
-      // Build glitch headlines
-      function buildGlitch(id, text, baseDelay){
-        var el = document.getElementById(id);
-        if(!el) return;
-        el.innerHTML = '';
-        text.split(' ').forEach(function(word, i){
-          var span = document.createElement('span');
-          span.className='gw';
-          span.textContent = word;
-          el.appendChild(span);
-          setTimeout(function(){ span.classList.add('on'); }, baseDelay + i*120);
-        });
-      }
-      buildGlitch('cta-h1', 'Stop being underestimated.', 300);
-      buildGlitch('cta-h2', 'Start speaking the language.', 700);
-      // CTA buttons
-      var btns = document.querySelector('.cta-btns');
-      if(btns) setTimeout(function(){ btns.classList.add('on'); }, 1200);
-      ctaIO.unobserve(e.target);
-    }
-  });
-},{threshold:.3});
-var ctaSec = document.querySelector('#cta');
-if(ctaSec) ctaIO.observe(ctaSec);
 
 </script>
 </body>
