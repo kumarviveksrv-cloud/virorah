@@ -61,6 +61,32 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;height:68px;padding:0 48px;d
 .btn-g{font-family:var(--fc);font-weight:500;font-size:14px;padding:14px 28px;background:transparent;color:var(--dim);border:1px solid rgba(244,243,255,.12);border-radius:10px;cursor:pointer;text-decoration:none;transition:border-color .3s,color .3s}
 .btn-g:hover{border-color:rgba(244,243,255,.3);color:var(--white)}
 
+/* HERO PATH CARDS */
+.hero-paths{display:flex;gap:16px;justify-content:center;margin-bottom:22px;opacity:0;animation:up .85s 1.3s cubic-bezier(.22,1,.36,1) forwards}
+.path-card{width:252px;padding:24px 26px 22px;border-radius:14px;background:rgba(6,5,26,.78);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);text-align:left;text-decoration:none;display:block;transition:transform .3s,box-shadow .3s;position:relative;overflow:hidden;border:1px solid}
+.path-pms{border-color:rgba(139,92,246,.28)}
+.path-pms:hover{transform:translateY(-3px);box-shadow:0 14px 48px rgba(139,92,246,.28)}
+.path-vantage{border-color:rgba(99,102,241,.28)}
+.path-vantage:hover{transform:translateY(-3px);box-shadow:0 14px 48px rgba(99,102,241,.28)}
+.path-accent{position:absolute;top:0;left:0;right:0;height:1.5px}
+.path-accent-pms{background:linear-gradient(90deg,#8b5cf6,#a78bfa,#7c3aed)}
+.path-accent-vantage{background:linear-gradient(90deg,#6366f1,#7c3aed,#4f46e5)}
+.path-cat{font-family:var(--fm);font-size:9px;letter-spacing:.14em;margin-bottom:10px}
+.path-cat-pms{color:#c4b5fd}
+.path-cat-vantage{color:#a5b4fc}
+.path-name{font-family:var(--fd);font-size:22px;font-weight:500;color:var(--white);margin-bottom:12px;line-height:1.1}
+.path-hook{font-family:var(--fd);font-size:13.5px;font-style:italic;line-height:1.55;margin-bottom:0}
+.path-hook-pms{color:rgba(196,181,253,.88)}
+.path-hook-vantage{color:rgba(165,180,252,.88)}
+.path-sub{font-size:11px;line-height:1.65;color:var(--faint);margin-top:8px}
+.path-cta{font-family:var(--fc);font-size:11.5px;font-weight:700;display:inline-flex;align-items:center;gap:6px;margin-top:18px;transition:gap .2s}
+.path-cta-pms{color:#c4b5fd}
+.path-cta-vantage{color:#a5b4fc}
+.path-card:hover .path-cta{gap:10px}
+.hero-phil-link{display:inline-block;font-family:var(--fc);font-size:11.5px;letter-spacing:.05em;color:var(--faint);text-decoration:none;transition:color .2s;opacity:0;animation:up .6s 1.65s cubic-bezier(.22,1,.36,1) forwards}
+.hero-phil-link:hover{color:var(--dim)}
+@media(max-width:600px){.hero-paths{flex-direction:column;align-items:center}.path-card{width:100%;max-width:320px}}
+
 .scroll-hint{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:10;opacity:0;animation:fadeIn 1s 2.2s forwards}
 .scroll-wire{width:1px;height:44px;background:linear-gradient(to bottom,transparent,rgba(99,102,241,.5));animation:breathe 2s infinite;margin:0 auto}
 @keyframes breathe{0%,100%{opacity:.5;transform:scaleY(1)}50%{opacity:1;transform:scaleY(1.2)}}
@@ -387,10 +413,24 @@ footer{padding:44px 48px;border-top:1px solid var(--border);background:var(--bg)
     </div>
     <p class="hero-top">You carry the hard calls alone.</p>
     <h1 class="hero-bot">We built the software that changes that.</h1>
-    <div class="hero-ctas">
-      <a href="#products" class="btn-p">Explore our products</a>
-      <a href="https://humacity.com" target="_blank" class="btn-g">Read the philosophy →</a>
+    <div class="hero-paths">
+      <a href="https://pms.virorah.com" target="_blank" class="path-card path-pms">
+        <div class="path-accent path-accent-pms"></div>
+        <div class="path-cat path-cat-pms">PERFORMANCE MANAGEMENT</div>
+        <div class="path-name">Virorah PMS</div>
+        <div class="path-hook path-hook-pms">Prove you built high performance.<br>Not just ran reviews.</div>
+        <div class="path-cta path-cta-pms">Enter PMS →</div>
+      </a>
+      <a href="https://vantage.virorah.com" target="_blank" class="path-card path-vantage">
+        <div class="path-accent path-accent-vantage"></div>
+        <div class="path-cat path-cat-vantage">HR INTELLIGENCE</div>
+        <div class="path-name">Virorah Vantage</div>
+        <div class="path-hook path-hook-vantage">You are HR for everyone.<br>Who is HR for you?</div>
+        <div class="path-sub">You've handled everyone's hardest moments. Now you don't have to handle them alone.</div>
+        <div class="path-cta path-cta-vantage">Enter Vantage →</div>
+      </a>
     </div>
+    <a href="https://humacity.com" target="_blank" class="hero-phil-link">Read the philosophy →</a>
   </div>
   <div class="scroll-hint"><div class="scroll-wire"></div></div>
 </section>
