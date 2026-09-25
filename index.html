@@ -850,7 +850,10 @@ footer{padding:44px 48px;border-top:1px solid var(--border);background:var(--bg)
   function resize(){
     var w=canvas.clientWidth, h=canvas.clientHeight;
     renderer.setSize(w,h,false);
-    camera.aspect=w/h; camera.updateProjectionMatrix();
+    var asp=w/h;
+    camera.aspect=asp;
+    camera.position.z = asp < 1 ? 2.6/asp : 2.6;
+    camera.updateProjectionMatrix();
   }
   resize(); window.addEventListener('resize', resize);
 
@@ -881,6 +884,16 @@ footer{padding:44px 48px;border-top:1px solid var(--border);background:var(--bg)
   var r3=mkRing(1.78,.002,0x7c3aed,.18,Math.PI*.15,Math.PI*.1,0);
   var r4=mkRing(1.16,.004,0xa5b4fc,.3,Math.PI*.7,0,Math.PI*.4);
 
+  function mkCircleTex(){
+    var c=document.createElement('canvas');c.width=32;c.height=32;
+    var ctx=c.getContext('2d');
+    var g=ctx.createRadialGradient(16,16,0,16,16,16);
+    g.addColorStop(0,'rgba(255,255,255,1)');g.addColorStop(1,'rgba(255,255,255,0)');
+    ctx.fillStyle=g;ctx.beginPath();ctx.arc(16,16,16,0,Math.PI*2);ctx.fill();
+    return new THREE.CanvasTexture(c);
+  }
+  var circleTex=mkCircleTex();
+
   function mkCloud(count,minR,maxR,color,sz){
     var pos=new Float32Array(count*3);
     for(var i=0;i<count;i++){
@@ -893,7 +906,7 @@ footer{padding:44px 48px;border-top:1px solid var(--border);background:var(--bg)
     }
     var geo=new THREE.BufferGeometry();
     geo.setAttribute('position',new THREE.BufferAttribute(pos,3));
-    var pts=new THREE.Points(geo,new THREE.PointsMaterial({color:color,size:sz,transparent:true,opacity:.7,sizeAttenuation:true}));
+    var pts=new THREE.Points(geo,new THREE.PointsMaterial({color:color,size:sz,transparent:true,opacity:.7,sizeAttenuation:true,map:circleTex,alphaTest:0.05}));
     globeGroup.add(pts); return pts;
   }
   var c1=mkCloud(600,1.15,2.1,0x7c3aed,.022);
