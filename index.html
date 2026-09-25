@@ -161,7 +161,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;height:68px;padding:0 48px;d
 
 /* HERO */
 #hero{position:relative;width:100%;height:100vh;min-height:680px;display:flex;align-items:center;justify-content:center;overflow:hidden}
-#globe{position:absolute;inset:0;width:100%;height:100%;z-index:1}
+#globe{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:min(700px,90vw);height:min(700px,90vw);opacity:.92;z-index:1}
 
 /* Subtle ambient labels (static, at edges) */
 .fl{position:absolute;z-index:3;font-family:var(--fm);font-size:11px;color:rgba(165,180,252,.35);letter-spacing:.1em;white-space:nowrap;pointer-events:none}
@@ -838,24 +838,23 @@ footer{padding:44px 48px;border-top:1px solid var(--border);background:var(--bg)
 <script>
 (function(){
   var canvas = document.getElementById('globe');
+  function getSize(){return Math.min(700,window.innerWidth*.9);}
+  var sz=getSize();canvas.width=sz;canvas.height=sz;
   var scene = new THREE.Scene();
   var globeGroup = new THREE.Group();
   scene.add(globeGroup);
-  var camera = new THREE.PerspectiveCamera(60, canvas.clientWidth/canvas.clientHeight, 0.1, 60);
-  camera.position.set(0, 0, 2.6);
+  var camera = new THREE.PerspectiveCamera(55, 1, 0.1, 100);
+  camera.position.set(0, 0, 3.4);
   var renderer = new THREE.WebGLRenderer({canvas:canvas, antialias:true, alpha:true});
+  renderer.setSize(sz,sz);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.setClearColor(0x000000, 0);
 
-  function resize(){
-    var w=canvas.clientWidth, h=canvas.clientHeight;
-    renderer.setSize(w,h,false);
-    var asp=w/h;
-    camera.aspect=asp;
-    camera.position.z = asp < 1 ? 2.6/asp : 2.6;
-    camera.updateProjectionMatrix();
-  }
-  resize(); window.addEventListener('resize', resize);
+  window.addEventListener('resize', function(){
+    var s=getSize();
+    canvas.style.width=s+'px';canvas.style.height=s+'px';
+    renderer.setSize(s,s);
+  });
 
   // ── GLOBE (Humacity architecture) ──
   var core = new THREE.Mesh(
