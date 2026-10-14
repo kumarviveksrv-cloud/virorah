@@ -365,6 +365,13 @@ footer{padding:44px 48px;border-top:1px solid var(--border);background:var(--bg)
 .arc-item:nth-child(3) .arc-wrap{animation-delay:1s}
 .arc-item:nth-child(4) .arc-wrap{animation-delay:1.5s}
 .arc-item:nth-child(5) .arc-wrap{animation-delay:2s}
+
+/* FLAGSHIP PRODUCT LAYOUT */
+.cards-col{display:flex;flex-direction:column;gap:28px}
+.suite-sep{display:flex;align-items:center;gap:16px;margin:4px 0}
+.suite-sep-line{flex:1;height:1px;background:var(--border)}
+.suite-sep-text{font-family:var(--fm);font-size:9.5px;letter-spacing:.18em;color:var(--faint);white-space:nowrap}
+.badge-flagship{background:rgba(99,102,241,.12);color:#a5b4fc;border:1px solid rgba(99,102,241,.3)}
 </style>
 </head>
 <body>
@@ -379,7 +386,7 @@ footer{padding:44px 48px;border-top:1px solid var(--border);background:var(--bg)
     <li><a href="about.html">About</a></li>
     <li><a href="#footer-contact">Contact</a></li>
   </ul>
-  <a href="#products" class="n-cta">Explore Products</a>
+  <a href="https://vantage.virorah.com" target="_blank" class="n-cta">Try Vantage Free →</a>
 </nav>
 
 <section id="hero">
@@ -401,17 +408,51 @@ footer{padding:44px 48px;border-top:1px solid var(--border);background:var(--bg)
 
 <section id="stats">
   <div class="stats-row">
-    <div class="stat"><div class="stat-n" data-t="2">0</div><div class="stat-l">Products fully<br>live today</div></div>
-    <div class="stat" style="transition-delay:.08s"><div class="stat-n" data-t="16">0</div><div class="stat-l">PMS calculators<br>built and live</div></div>
-    <div class="stat" style="transition-delay:.16s"><div class="stat-n" data-t="6">0</div><div class="stat-l">HR intelligence tools<br>in Vantage</div></div>
+    <div class="stat"><div class="stat-n" data-t="6">0</div><div class="stat-l">HR intelligence<br>tools in Vantage</div></div>
+    <div class="stat" style="transition-delay:.08s"><div class="stat-n" data-t="7">0</div><div class="stat-l">Day free trial<br>on Vantage</div></div>
+    <div class="stat" style="transition-delay:.16s"><div class="stat-n" data-t="16">0</div><div class="stat-l">PMS calculators<br>built and live</div></div>
     <div class="stat" style="transition-delay:.24s"><div class="stat-n" data-t="5">0</div><div class="stat-l">Humac pillars<br>measured</div></div>
   </div>
 </section>
 
 <section id="products">
   <div class="sec-eyebrow"><div class="eyebrow-rule"></div><span class="eyebrow-text">Our Products</span></div>
-  <h2 class="sec-title">Two products. One operating system.<br><em>All built on Humacity.</em></h2>
-  <div class="cards-row">
+  <h2 class="sec-title">Private HR intelligence, now live.<br><em>And the performance lab that started it all.</em></h2>
+  <div class="cards-col">
+
+    <!-- FLAGSHIP: Virorah Vantage -->
+    <div class="pc pc-vantage" onclick="window.open('https://vantage.virorah.com','_blank')">
+      <div class="accent accent-i"></div>
+      <div class="card-row">
+        <span class="cat cat-i">HR Intelligence</span>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span class="badge badge-flagship"><span class="b-dot" style="background:#a5b4fc;animation:blink 2.4s infinite"></span>Flagship</span>
+          <span class="badge badge-live"><span class="b-dot"></span>Live</span>
+        </div>
+      </div>
+      <h3 class="c-title c-title-i">Virorah Vantage</h3>
+      <span class="india">🇮🇳 Built for Indian HR professionals</span>
+      <p class="c-hook c-hook-i">You are HR for everyone.<br>Who is HR for you?</p>
+      <p class="c-body">Terminations you weren't sure about. Legal minefields with no one to call. Boardrooms where your numbers had no rupee sign. Vantage is the intelligence layer you always needed — always-on, always contextual, always in your corner.</p>
+      <div class="c-chips">
+        <span class="chip chip-i">Employee Case Advisor</span>
+        <span class="chip chip-i">Legal Guidance</span>
+        <span class="chip chip-i">ARIA Intelligence</span>
+        <span class="chip chip-i">Policy Advisor</span>
+        <span class="chip chip-i">Financial Exposure</span>
+      </div>
+      <div class="c-proof c-proof-i">Every hard moment, covered — in writing, in law, and in rupees. 7-day free trial, no card required.</div>
+      <a href="https://vantage.virorah.com" target="_blank" class="c-cta c-cta-i" onclick="event.stopPropagation()">Start your free trial →</a>
+    </div>
+
+    <!-- Suite separator -->
+    <div class="suite-sep">
+      <div class="suite-sep-line"></div>
+      <span class="suite-sep-text">ALSO IN THE VIRORAH SUITE</span>
+      <div class="suite-sep-line"></div>
+    </div>
+
+    <!-- SECONDARY: Virorah PMS -->
     <div class="pc pc-pms" onclick="window.open('https://pms.virorah.com','_blank')">
       <div class="accent accent-v"></div>
       <div class="card-row">
@@ -431,26 +472,7 @@ footer{padding:44px 48px;border-top:1px solid var(--border);background:var(--bg)
       <div class="c-proof c-proof-v">16 calculators · 15 org scenarios · 4 certifications — For the first time, you can prove you built high performance.</div>
       <a href="https://pms.virorah.com" target="_blank" class="c-cta c-cta-v" onclick="event.stopPropagation()">Enter Virorah PMS →</a>
     </div>
-    <div class="pc pc-vantage" onclick="window.open('https://vantage.virorah.com','_blank')">
-      <div class="accent accent-i"></div>
-      <div class="card-row">
-        <span class="cat cat-i">HR Intelligence</span>
-        <span class="badge badge-ea"><span class="b-dot"></span>Early Access</span>
-      </div>
-      <h3 class="c-title c-title-i">Virorah Vantage</h3>
-      <span class="india">🇮🇳 Built for Indian HR professionals</span>
-      <p class="c-hook c-hook-i">You are HR for everyone.<br>Who is HR for you?</p>
-      <p class="c-body">Terminations you weren't sure about. Legal minefields with no one to call. Boardrooms where your numbers had no rupee sign. Vantage is the intelligence layer you always needed — always-on, always contextual, always in your corner.</p>
-      <div class="c-chips">
-        <span class="chip chip-i">Employee Case Advisor</span>
-        <span class="chip chip-i">Legal Guidance</span>
-        <span class="chip chip-i">ARIA Intelligence</span>
-        <span class="chip chip-i">Policy Advisor</span>
-        <span class="chip chip-i">Financial Exposure</span>
-      </div>
-      <div class="c-proof c-proof-i">Every hard moment, covered — in writing, in law, and in rupees.</div>
-      <a href="https://vantage.virorah.com" target="_blank" class="c-cta c-cta-i" onclick="event.stopPropagation()">Enter Virorah Vantage →</a>
-    </div>
+
   </div>
 </section>
 
@@ -543,7 +565,7 @@ footer{padding:44px 48px;border-top:1px solid var(--border);background:var(--bg)
     <p class="cta-h1">Stop being underestimated.</p>
     <p class="cta-h2">Start speaking the language.</p>
     <div class="cta-btns">
-      <a href="#products" class="btn-p">Explore all products</a>
+      <a href="https://vantage.virorah.com" target="_blank" class="btn-p">Start your 7-day free trial →</a>
       <a href="https://humacity.com" target="_blank" class="btn-g">Read Humacity →</a>
     </div>
   </div>
