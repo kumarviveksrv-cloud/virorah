@@ -1,0 +1,5 @@
+These font files are served from this site instead of Google Fonts, so visitors' browsers do not contact Google to load them.
+Source: Fontsource (https://fontsource.org), which packages the original font projects.
+Families: Bricolage Grotesque, Plus Jakarta Sans, JetBrains Mono, Space Grotesk, Cormorant Garamond, Sora, DM Mono.
+All are licensed under the SIL Open Font License 1.1 (https://openfontlicense.org), which permits redistribution.
+Copyright remains with each family's project authors.
